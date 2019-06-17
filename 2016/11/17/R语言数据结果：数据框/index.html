@@ -1,0 +1,634 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css">
+
+
+  <meta name="keywords" content="R数据结构,">
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1">
+
+
+
+
+
+
+<meta name="description" content="数据框概括数据框是由n个相同长度的向量按列合并的一张表，每列的数据类型可以不同。    数据框是一个特殊的list,list的每个元素都是长度相同的向量。  12345678910111213141516171819202122232425262728293031323334353637383940414243# stringsAsFactors = FALSE,字符串不会被转换成fator类型&amp;">
+<meta name="keywords" content="R数据结构">
+<meta property="og:type" content="article">
+<meta property="og:title" content="R语言数据结构：数据框">
+<meta property="og:url" content="http://xizhiming.github.io/2016/11/17/R语言数据结果：数据框/index.html">
+<meta property="og:site_name" content="Brook.Xi">
+<meta property="og:description" content="数据框概括数据框是由n个相同长度的向量按列合并的一张表，每列的数据类型可以不同。    数据框是一个特殊的list,list的每个元素都是长度相同的向量。  12345678910111213141516171819202122232425262728293031323334353637383940414243# stringsAsFactors = FALSE,字符串不会被转换成fator类型&amp;">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2016-11-30T06:49:06.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="R语言数据结构：数据框">
+<meta name="twitter:description" content="数据框概括数据框是由n个相同长度的向量按列合并的一张表，每列的数据类型可以不同。    数据框是一个特殊的list,list的每个元素都是长度相同的向量。  12345678910111213141516171819202122232425262728293031323334353637383940414243# stringsAsFactors = FALSE,字符串不会被转换成fator类型&amp;">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://xizhiming.github.io/2016/11/17/R语言数据结果：数据框/">
+
+  <title> R语言数据结构：数据框 | Brook.Xi </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/index" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Brook.Xi</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/index" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                R语言数据结构：数据框
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-11-17T16:26:30+08:00" content="2016-11-17">
+              2016-11-17
+            </time>
+          </span>
+
+          
+            <span class="post-category">
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/R/" itemprop="url" rel="index">
+                    <span itemprop="name">R</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="数据框概括"><a href="#数据框概括" class="headerlink" title="数据框概括"></a>数据框概括</h2><p>数据框是由n个<strong>相同长度</strong>的向量<strong>按列合并</strong>的一张表，每列的数据类型可以不同。  </p>
+<blockquote>
+<p>数据框是一个特殊的list,list的每个元素都是长度相同的向量。</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"># stringsAsFactors = FALSE,字符串不会被转换成fator类型</span><br><span class="line">&gt; df &lt;- data.frame(x=1:3,y=c(&apos;a&apos;,&apos;b&apos;,&apos;c&apos;),stringsAsFactors = FALSE)</span><br><span class="line">&gt; df</span><br><span class="line">  x y</span><br><span class="line">1 1 a</span><br><span class="line">2 2 b</span><br><span class="line">3 3 c</span><br><span class="line"></span><br><span class="line"># 3行</span><br><span class="line">&gt; nrow(df)</span><br><span class="line">[1] 3</span><br><span class="line"></span><br><span class="line"># 2列</span><br><span class="line">&gt; ncol(df)</span><br><span class="line">[1] 2</span><br><span class="line"></span><br><span class="line"># 列名称为&apos;x&apos;的列</span><br><span class="line">&gt; df$x</span><br><span class="line">[1] 1 2 3</span><br><span class="line"></span><br><span class="line"># 第1列</span><br><span class="line">&gt; df[,1]</span><br><span class="line">[1] 1 2 3</span><br><span class="line"></span><br><span class="line"># 第1行</span><br><span class="line">&gt; df[1,]</span><br><span class="line">  x y</span><br><span class="line">1 1 a</span><br><span class="line"></span><br><span class="line"># 合并行，需要保证数据类型和长度符合</span><br><span class="line">&gt; rbind(df,c(4,&apos;d&apos;))</span><br><span class="line">  x y</span><br><span class="line">1 1 a</span><br><span class="line">2 2 b</span><br><span class="line">3 3 c</span><br><span class="line">4 4 d</span><br><span class="line"></span><br><span class="line"># 合并列，需要保证长度符合</span><br><span class="line">&gt; cbind(df,&apos;z&apos;=4:6)</span><br><span class="line">  x y z</span><br><span class="line">1 1 a 4</span><br><span class="line">2 2 b 5</span><br><span class="line">3 3 c 6</span><br></pre></td></tr></table></figure>
+<a id="more"></a>
+<h2 id="数据框函数"><a href="#数据框函数" class="headerlink" title="数据框函数"></a>数据框函数</h2><h3 id="数据集及包"><a href="#数据集及包" class="headerlink" title="数据集及包"></a>数据集及包</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">&gt; library(nycflights13)</span><br><span class="line">&gt; library(plyr)</span><br><span class="line">&gt; library(dplyr)</span><br><span class="line">&gt; library(tidyr)</span><br><span class="line">&gt; library(reshape2)</span><br><span class="line">&gt; head(flights)</span><br><span class="line">  year month day dep_time sched_dep_time dep_delay arr_time sched_arr_time arr_delay carrier flight</span><br><span class="line">1 2013     1   1      517            515         2      830            819        11      UA   1545</span><br><span class="line">2 2013     1   1      533            529         4      850            830        20      UA   1714</span><br><span class="line">3 2013     1   1      542            540         2      923            850        33      AA   1141</span><br><span class="line">4 2013     1   1      544            545        -1     1004           1022       -18      B6    725</span><br><span class="line">5 2013     1   1      554            600        -6      812            837       -25      DL    461</span><br><span class="line">6 2013     1   1      554            558        -4      740            728        12      UA   1696</span><br><span class="line">  tailnum origin dest air_time distance hour minute           time_hour</span><br><span class="line">1  N14228    EWR  IAH      227     1400    5     15 2013-01-01 05:00:00</span><br><span class="line">2  N24211    LGA  IAH      227     1416    5     29 2013-01-01 05:00:00</span><br><span class="line">3  N619AA    JFK  MIA      160     1089    5     40 2013-01-01 05:00:00</span><br><span class="line">4  N804JB    JFK  BQN      183     1576    5     45 2013-01-01 05:00:00</span><br><span class="line">5  N668DN    LGA  ATL      116      762    6      0 2013-01-01 06:00:00</span><br><span class="line">6  N39463    EWR  ORD      150      719    5     58 2013-01-01 05:00:00</span><br></pre></td></tr></table></figure>
+<h3 id="管道函数-gt"><a href="#管道函数-gt" class="headerlink" title="管道函数 %&gt;%"></a>管道函数 <strong>%&gt;%</strong></h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">x %&gt;% f(y) 等价于 f(x,y)</span><br><span class="line">y %&gt;% f(x,.,z) 等价于 f(x,y,z)</span><br></pre></td></tr></table></figure>
+<h3 id="筛选行"><a href="#筛选行" class="headerlink" title="筛选行"></a>筛选行</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">subset(flights,flights$month==1&amp;flights$day==1)</span><br><span class="line">filter(flights, month ==1, day ==1)</span><br><span class="line"></span><br><span class="line"># 去重</span><br><span class="line">distinct(select(flights, year,2,3))</span><br><span class="line">distinct(flights[,1:3])</span><br><span class="line"># distinct比unique快</span><br><span class="line">unique(flights[,1:3])</span><br></pre></td></tr></table></figure>
+<h3 id="选择列"><a href="#选择列" class="headerlink" title="选择列"></a>选择列</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"># 按列的名称进行筛选,可以添加任意多个列名称</span><br><span class="line"># 可以搭配使用starts_with(), ends_with(), contains(), matches()</span><br><span class="line">select(flights, year, month, day)</span><br><span class="line">select(flights,year,month,day,ends_with(&apos;time&apos;))</span><br><span class="line"></span><br><span class="line"># 按列的位置进行筛选</span><br><span class="line">select(flights,1:3,6,9:10) # 选择第1,2,3,6,9,10共6列</span><br><span class="line">flights[c(1:3,6,9:10)]</span><br><span class="line"></span><br><span class="line"># 列名称与位置混合使用</span><br><span class="line">select(flights,year,6,9:10)</span><br></pre></td></tr></table></figure>
+<h3 id="增加列"><a href="#增加列" class="headerlink" title="增加列"></a>增加列</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mutate(flights,gain =arr_delay -dep_delay,speed =distance /air_time *60)</span><br><span class="line">#可以在mutate()函数中使用刚刚添加的新列，不需要写两行代码</span><br><span class="line">mutate(flights,gain =arr_delay -dep_delay,gain_per_hour =gain /(air_time /60))</span><br></pre></td></tr></table></figure>
+<h3 id="数据框整形"><a href="#数据框整形" class="headerlink" title="数据框整形"></a>数据框整形</h3><h4 id="排序"><a href="#排序" class="headerlink" title="排序"></a>排序</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"># arrange函数，默认升序</span><br><span class="line">arrange(flights, year, desc(month), desc(day))</span><br><span class="line"></span><br><span class="line"># base包的order函数</span><br><span class="line"># 对各列按列名称降序排序</span><br><span class="line">x &lt;- x[,order(colnames(x),decreasing=T)]</span><br><span class="line"># 对各行按行名称降序排序</span><br><span class="line">x &lt;- x[order(rownames(x),decreasing=T),]</span><br></pre></td></tr></table></figure>
+<h4 id="重命名行名、列名"><a href="#重命名行名、列名" class="headerlink" title="重命名行名、列名"></a>重命名行名、列名</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"># 行名称</span><br><span class="line">rownames(flights) &lt;- c(...)</span><br><span class="line">rownames(flights)[1] &lt;- &apos;1st&apos;</span><br><span class="line"></span><br><span class="line"># 列名称</span><br><span class="line">colnames(flights) &lt;- c(...)</span><br><span class="line">colnames(flights)[1] &lt;- &apos;YEAR&apos;</span><br><span class="line"></span><br><span class="line">dplyr::rename(flights,&apos;年(新列名)&apos; = year )</span><br><span class="line"></span><br><span class="line">setNames(flights[1:3],c(&apos;年&apos;,&apos;月&apos;,&apos;日&apos;))</span><br></pre></td></tr></table></figure>
+<h4 id="合并、拆分"><a href="#合并、拆分" class="headerlink" title="合并、拆分"></a>合并、拆分</h4><h5 id="reshape2-melt-dcast"><a href="#reshape2-melt-dcast" class="headerlink" title="reshape2:melt,dcast"></a>reshape2:melt,dcast</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line">&gt; head(airquality)</span><br><span class="line">  Ozone Solar.R Wind Temp Month Day</span><br><span class="line">1    41     190  7.4   67     5   1</span><br><span class="line">2    36     118  8.0   72     5   2</span><br><span class="line">3    12     149 12.6   74     5   3</span><br><span class="line">4    18     313 11.5   62     5   4</span><br><span class="line">5    NA      NA 14.3   56     5   5</span><br><span class="line">6    28      NA 14.9   66     5   6</span><br><span class="line"></span><br><span class="line"># 保留&quot;Ozone&quot;, &quot;Month&quot;, &quot;Day&quot;三列，将2到4列合并为一列</span><br><span class="line">&gt; melt_result &lt;- melt(airquality, var.ids=c(&quot;Ozone&quot;, &quot;Month&quot;, &quot;Day&quot;),measure.vars=c(2:4), variable.name=&quot;V.type&quot;, value.name=&quot;value&quot;)</span><br><span class="line">&gt; head(melt_result)</span><br><span class="line">  Ozone Month Day  V.type value</span><br><span class="line">1    41     5   1 Solar.R   190</span><br><span class="line">2    36     5   2 Solar.R   118</span><br><span class="line">3    12     5   3 Solar.R   149</span><br><span class="line">4    18     5   4 Solar.R   313</span><br><span class="line">5    NA     5   5 Solar.R    NA</span><br><span class="line">6    28     5   6 Solar.R    NA</span><br><span class="line"></span><br><span class="line"># melt_result可以用dcast展开</span><br><span class="line"># 左边的每一个变量为一列，再按V.type的水平数分列（V.type有4个水平/4类，就再增加4列）</span><br><span class="line">&gt; dcast_result &lt;- dcast(melt_result, Ozone+Month+Day~V.type)</span><br><span class="line">&gt; head(dcast_result)</span><br><span class="line">  Ozone Month Day Solar.R Wind Temp</span><br><span class="line">1     1     5  21       8  9.7   59</span><br><span class="line">2     4     5  23      25  9.7   61</span><br><span class="line">3     6     5  18      78 18.4   57</span><br><span class="line">4     7     5  11      NA  6.9   74</span><br><span class="line">5     7     7  15      48 14.3   80</span><br><span class="line">6     7     9  24      49 10.3   69</span><br><span class="line"></span><br><span class="line"># dcast在拆分数据的同时还可以按照某一个因子进行聚合（其实这才是主要目的）</span><br><span class="line">&gt; dcast(melt_result, Month~V.type, fun.aggregate=mean, na.rm=TRUE)</span><br><span class="line">  Month  Solar.R      Wind     Temp</span><br><span class="line">1     5 181.2963 11.622581 65.54839</span><br><span class="line">2     6 190.1667 10.266667 79.10000</span><br><span class="line">3     7 216.4839  8.941935 83.90323</span><br><span class="line">4     8 171.8571  8.793548 83.96774</span><br><span class="line">5     9 167.4333 10.180000 76.90000</span><br></pre></td></tr></table></figure>
+<h5 id="tidyr-gather-spread"><a href="#tidyr-gather-spread" class="headerlink" title="tidyr:gather,spread"></a>tidyr:gather,spread</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"># 将Solar.R,Wind,Temp三列合并为一列</span><br><span class="line">&gt; melt_result &lt;- gather(airquality,key=V.type,value=value,Solar.R,Wind,Temp)</span><br><span class="line">&gt; head(melt_result)</span><br><span class="line">  Ozone Month Day  V.type value</span><br><span class="line">1    41     5   1 Solar.R   190</span><br><span class="line">2    36     5   2 Solar.R   118</span><br><span class="line">3    12     5   3 Solar.R   149</span><br><span class="line">4    18     5   4 Solar.R   313</span><br><span class="line">5    NA     5   5 Solar.R    NA</span><br><span class="line">6    28     5   6 Solar.R    NA</span><br><span class="line"></span><br><span class="line"># 将V.type的值作为数据展开后的列名，将value值填充到数据框内</span><br><span class="line">&gt; spread(melt_result,V.type,value)</span><br><span class="line">    Ozone Month Day Solar.R Wind Temp</span><br><span class="line">1       1     5  21       8  9.7   59</span><br><span class="line">2       4     5  23      25  9.7   61</span><br><span class="line">3       6     5  18      78 18.4   57</span><br><span class="line">4       7     5  11      NA  6.9   74</span><br><span class="line">5       7     7  15      48 14.3   80</span><br></pre></td></tr></table></figure>
+<h4 id="tidyr-unite-separate"><a href="#tidyr-unite-separate" class="headerlink" title="tidyr:unite,separate"></a>tidyr:unite,separate</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">&gt; a &lt;- data.frame(col_name=c(&apos;a-b&apos;,&apos;d-e-f&apos;,&apos;1-2-3-4&apos;))</span><br><span class="line">&gt; tidyr::separate(a,</span><br><span class="line">                 # col:被分割列的列名称</span><br><span class="line">                 col=col_name,</span><br><span class="line">                 # into:分割的新列的名称</span><br><span class="line">                 into=c(&apos;new_col_1&apos;,&apos;new_col_2&apos;,&apos;new_col_3&apos;),</span><br><span class="line">                 # sep:分割符</span><br><span class="line">                 sep=&quot;-&quot;,</span><br><span class="line">                 # remove=TRUE：返回结果中移除被分割列</span><br><span class="line">                 # remove=FALSE：返回结果中保留被分割列</span><br><span class="line">                 remove = FALSE,</span><br><span class="line">                 # extra：merge，drop，&apos;1-2-3-4&apos;分割结果有4列，但into里面只有三列，merge表示3、4列合并，drop表示直接遗弃第4列的值</span><br><span class="line">                 extra=&quot;merge&quot;,</span><br><span class="line">                 # fill:right,left,&apos;a-b&apos;分割结果只有2列，所有第三列填充NA，right表示在右边填充</span><br><span class="line">                 fill=&quot;right&quot;</span><br><span class="line">                 )</span><br><span class="line">  col_name new_col_1 new_col_2 new_col_3</span><br><span class="line">1      a-b         a         b      &lt;NA&gt;</span><br><span class="line">2    d-e-f         d         e         f</span><br><span class="line">3  1-2-3-4         1         2       3-4</span><br><span class="line"></span><br><span class="line">&gt; b &lt;- data.frame(&apos;col_1&apos;=c(&apos;a&apos;,&apos;b&apos;,&apos;c&apos;),&apos;col_2&apos;=1:3)</span><br><span class="line">&gt; tidyr::unite(b,</span><br><span class="line">              # col：合并后新列的名称</span><br><span class="line">              col=new_col_name,</span><br><span class="line">              # 被合并的列名</span><br><span class="line">              col_1,col_2,</span><br><span class="line">              # remove=FALSE：返回结果保留被合并的列</span><br><span class="line">              remove=FALSE</span><br><span class="line">              )</span><br><span class="line">  new_col_name col_1 col_2</span><br><span class="line">1          a_1     a     1</span><br><span class="line">2          b_2     b     2</span><br><span class="line">3          c_3     c     3</span><br></pre></td></tr></table></figure>
+<h3 id="数据框合并"><a href="#数据框合并" class="headerlink" title="数据框合并"></a>数据框合并</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">merge(users,allorders,by=&quot;uid&quot;,all.x=T)</span><br><span class="line"></span><br><span class="line"># type:left (default), right, inner or full</span><br><span class="line"># match:first,all</span><br><span class="line">plyr::join(users,users_year_template,by=&quot;uid&quot;,type=&quot;left&quot;,match=&quot;first&quot;)</span><br></pre></td></tr></table></figure>
+<h3 id="分组、聚合"><a href="#分组、聚合" class="headerlink" title="分组、聚合"></a>分组、聚合</h3><h4 id="group-by-summarise"><a href="#group-by-summarise" class="headerlink" title="group_by,summarise"></a>group_by,summarise</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"># 根据飞机编号进行分组</span><br><span class="line">by_tailnum &lt;- group_by(flights, tailnum)</span><br><span class="line"># 求每个飞机编号的飞行次数，每次飞行的平均距离以及平均延误时间</span><br><span class="line">delay &lt;- summarize(by_tailnum,</span><br><span class="line">                  count =n(),</span><br><span class="line">                  dist =mean(distance,na.rm =TRUE),</span><br><span class="line">                  delay =mean(arr_delay,na.rm =TRUE))</span><br><span class="line"># n()：计数</span><br><span class="line"># n_distinct(x)：去重计数</span><br><span class="line"># first(x)：第一个</span><br><span class="line"># last(x)：最后一个</span><br><span class="line"># nth(x, n)：第n个</span><br><span class="line"></span><br><span class="line"># 当分组变量有多个的时候，每一个summarise向上递归一个变量</span><br><span class="line">daily &lt;- group_by(flights, year, month, day)</span><br><span class="line"># 第1个summarize计算day</span><br><span class="line">per_day &lt;- summarize(daily,flights =n())</span><br><span class="line"># 第2个summarize计算month</span><br><span class="line">per_month &lt;- summarize(per_day,flights =sum(flights))</span><br><span class="line"># 第3个summarize计算year</span><br><span class="line">per_year &lt;- summarize(per_month,flights =sum(flights))</span><br><span class="line"></span><br><span class="line"># summarize_all函数：对所有的聚合变量使用同样的聚合函数</span><br><span class="line">by_tailnum%&gt;%summarize_all(n_distinct)</span><br><span class="line"></span><br><span class="line"># summary_each,对多个聚合变量使用多个聚合函数</span><br><span class="line">flights %&gt;%</span><br><span class="line">  group_by(year,month) %&gt;%</span><br><span class="line">  summarise_each(funs(min(.,na.rm =TRUE),</span><br><span class="line">                      mean(.,na.rm =TRUE),</span><br><span class="line">                      max(.,na.rm =TRUE)),</span><br><span class="line">                 distance,dep_time</span><br><span class="line">                 )</span><br></pre></td></tr></table></figure>
+<h4 id="tapply"><a href="#tapply" class="headerlink" title="tapply"></a>tapply</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"># 多个分组变量(itemName,DATE)，一个聚合变量(order_id)，一个聚合函数(length)</span><br><span class="line"># 对订单数据做聚合，按照下单日期，商品名称分组，计算订单量</span><br><span class="line">tapply(Orders$order_id,list(Orders$itemName,Orders$DATE),length)</span><br></pre></td></tr></table></figure>
+<h4 id="aggregate"><a href="#aggregate" class="headerlink" title="aggregate"></a>aggregate</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"># 多个分组变量(DATE)，多个聚合变量(16:22),一个聚合函数(sum)</span><br><span class="line"># 对订单数据做聚合，按照下单日期分组，对第16至22列的数据做sum运算</span><br><span class="line">aggregate(Orders[,16:22],by=list(Orders$itemName,Orders$DATE),sum)</span><br></pre></td></tr></table></figure>
+<hr>
+<p><strong>That’s all.</strong><br><strong>Happy writing!</strong></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/R数据结构/" rel="tag">#R数据结构</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/11/13/R语言数据结构-向量/" rel="next" title="R语言数据结构：向量">
+                <i class="fa fa-chevron-left"></i> R语言数据结构：向量
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/11/22/R语言访问数据库/" rel="prev" title="R语言访问数据库">
+                R语言访问数据库 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image" src="/images/me.jpeg" alt="Brook.Xi">
+          <p class="site-author-name" itemprop="name">Brook.Xi</p>
+          <p class="site-description motion-element" itemprop="description">毋意, 毋必, 毋固, 毋我</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">21</span>
+              <span class="site-state-item-name">文章</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">15</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/xizhiming" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#数据框概括"><span class="nav-number">1.</span> <span class="nav-text">数据框概括</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数据框函数"><span class="nav-number">2.</span> <span class="nav-text">数据框函数</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#数据集及包"><span class="nav-number">2.1.</span> <span class="nav-text">数据集及包</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#管道函数-gt"><span class="nav-number">2.2.</span> <span class="nav-text">管道函数 %&gt;%</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#筛选行"><span class="nav-number">2.3.</span> <span class="nav-text">筛选行</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#选择列"><span class="nav-number">2.4.</span> <span class="nav-text">选择列</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#增加列"><span class="nav-number">2.5.</span> <span class="nav-text">增加列</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数据框整形"><span class="nav-number">2.6.</span> <span class="nav-text">数据框整形</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#排序"><span class="nav-number">2.6.1.</span> <span class="nav-text">排序</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#重命名行名、列名"><span class="nav-number">2.6.2.</span> <span class="nav-text">重命名行名、列名</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#合并、拆分"><span class="nav-number">2.6.3.</span> <span class="nav-text">合并、拆分</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#reshape2-melt-dcast"><span class="nav-number">2.6.3.1.</span> <span class="nav-text">reshape2:melt,dcast</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#tidyr-gather-spread"><span class="nav-number">2.6.3.2.</span> <span class="nav-text">tidyr:gather,spread</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#tidyr-unite-separate"><span class="nav-number">2.6.4.</span> <span class="nav-text">tidyr:unite,separate</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数据框合并"><span class="nav-number">2.7.</span> <span class="nav-text">数据框合并</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#分组、聚合"><span class="nav-number">2.8.</span> <span class="nav-text">分组、聚合</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#group-by-summarise"><span class="nav-number">2.8.1.</span> <span class="nav-text">group_by,summarise</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#tapply"><span class="nav-number">2.8.2.</span> <span class="nav-text">tapply</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#aggregate"><span class="nav-number">2.8.3.</span> <span class="nav-text">aggregate</span></a></li></ol></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Brook.Xi</span>
+</div>
+
+<div class="powered-by">
+  <a class="theme-link" href="https://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

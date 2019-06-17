@@ -1,0 +1,636 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css">
+
+
+  <meta name="keywords" content="Python基础,">
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1">
+
+
+
+
+
+
+<meta name="description" content="简介Python最常见的数据类型分为序列与映射两大类。常见的序列有列表list[]、元组tupple()、字符串str三种,常见的映射为字典{}。">
+<meta name="keywords" content="Python基础">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Python常见数据类型">
+<meta property="og:url" content="http://xizhiming.github.io/2016/10/21/Python常见数据类型/index.html">
+<meta property="og:site_name" content="Brook.Xi">
+<meta property="og:description" content="简介Python最常见的数据类型分为序列与映射两大类。常见的序列有列表list[]、元组tupple()、字符串str三种,常见的映射为字典{}。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2016-10-31T03:14:08.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Python常见数据类型">
+<meta name="twitter:description" content="简介Python最常见的数据类型分为序列与映射两大类。常见的序列有列表list[]、元组tupple()、字符串str三种,常见的映射为字典{}。">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://xizhiming.github.io/2016/10/21/Python常见数据类型/">
+
+  <title> Python常见数据类型 | Brook.Xi </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/index" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Brook.Xi</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/index" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Python常见数据类型
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-10-21T16:13:18+08:00" content="2016-10-21">
+              2016-10-21
+            </time>
+          </span>
+
+          
+            <span class="post-category">
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Python/" itemprop="url" rel="index">
+                    <span itemprop="name">Python</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>Python最常见的数据类型分为序列与映射两大类。<br>常见的序列有列表list[]、元组tupple()、字符串str三种,常见的映射为字典{}。<br><a id="more"></a></p>
+<hr>
+<h2 id="序列"><a href="#序列" class="headerlink" title="序列"></a>序列</h2><h3 id="通用操作"><a href="#通用操作" class="headerlink" title="通用操作"></a>通用操作</h3><p>索引、分片、相加、相乘、检索(判定成员资格)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; a = [1,2,3,4]</span><br><span class="line">&gt;&gt;&gt; b = [3,4,5,6]</span><br><span class="line">#索引，提取第一个元素，从0开始</span><br><span class="line">&gt;&gt;&gt; a[0]</span><br><span class="line">1</span><br><span class="line">#分片，提取从0开始到1结束的元素</span><br><span class="line">&gt;&gt;&gt; a[:2]</span><br><span class="line">[1, 2]</span><br><span class="line">#分片，提取从3开始到结束的元素</span><br><span class="line">&gt;&gt;&gt; b[3:]</span><br><span class="line">[6]</span><br><span class="line">#相加</span><br><span class="line">&gt;&gt;&gt; a+b</span><br><span class="line">[1, 2, 3, 4, 3, 4, 5, 6]</span><br><span class="line">#相乘</span><br><span class="line">&gt;&gt;&gt; a*2</span><br><span class="line">[1, 2, 3, 4, 1, 2, 3, 4]</span><br><span class="line">#检索</span><br><span class="line">&gt;&gt;&gt; 1 in a</span><br><span class="line">True</span><br><span class="line">&gt;&gt;&gt; 5 in a</span><br><span class="line">False</span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="列表"><a href="#列表" class="headerlink" title="列表"></a>列表</h3><blockquote>
+<p><strong>函数与方法的区别</strong><br>函数一般是通用的，适用与多种类。方法本质上还是是函数，但方法是属于某个类名下的。这一点从两者不同的调用形式上也可以看出来。<br>函数的调用： 函数名(参数1,参数2…)，例如len(),min(),max()这些都是通用的函数<br>方法的调用：对象名.方法名(参数1,参数2…)，下面会讲到列表的常用方法</p>
+</blockquote>
+<p><strong>常用函数：</strong><br>list()，可以将一个其他类型的对象转换为list<br>range(start,end,step)，返回一个数值递增列表，默认start为0，step为1，不包含end<br>map,reduce对列表进行映射与归约</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; list(&apos;hello&apos;)</span><br><span class="line">[&apos;h&apos;, &apos;e&apos;, &apos;l&apos;, &apos;l&apos;, &apos;o&apos;]</span><br><span class="line"># 从1开始，步长为2，不包括5。结果为1,3</span><br><span class="line">&gt;&gt;&gt; for i in range(1,5,2):</span><br><span class="line">        print(i)</span><br><span class="line"># map: 针对多个列表的对应元素运用函数</span><br><span class="line"># reduce: 针对参数序列中元素进行累积运用函数</span><br><span class="line">&gt;&gt;&gt; a = [1, 6, 3]</span><br><span class="line">&gt;&gt;&gt; b = [4, 5, 6]</span><br><span class="line"># 先对a,b两个序列的对应元素取最大值,结果返回一个列表c=[4,6,6]</span><br><span class="line">&gt;&gt;&gt; c = map(max, a, b)</span><br><span class="line"># 再对列表c中的元素累积运用乘法,即 4*6*6=144</span><br><span class="line">&gt;&gt;&gt; from functools import reduce</span><br><span class="line">&gt;&gt;&gt; reduce(lambda x, y: x*y, c)</span><br></pre></td></tr></table></figure>
+<p><strong>常用方法：</strong><br>append：在列表的末尾追加元素<br>count：计算某个元素出现的次数，有返回值<br>extend：合并列表(需注意：针对字符串使用extend方法，会把字符串拆分为单个的字符，慎用)<br>index：查找某个元素第一次出现的位置<br>insert：在指定位置插入元素<br>pop：按位置移除指定元素并返回该元素的值，有返回值<br>remove：按照给定的值删除第一个匹配到的元素<br>sort：对列表进行排序</p>
+<blockquote>
+<p><strong>列表的复制与克隆</strong><br>L1 = L ，L1为L的别名，本质上还是同一个对象，对L1操作即对L操作<br>L1 = L[:] ，L1为L的克隆，即另一个拷贝</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line">#声明列表</span><br><span class="line">&gt;&gt;&gt; a = []</span><br><span class="line">#通过字符串创建列表</span><br><span class="line">&gt;&gt;&gt; a = list(&apos;hello&apos;)</span><br><span class="line"># 添加</span><br><span class="line">&gt;&gt;&gt; a.append(&apos;o&apos;)</span><br><span class="line">&gt;&gt;&gt; a</span><br><span class="line">[&apos;h&apos;, &apos;e&apos;, &apos;l&apos;, &apos;l&apos;, &apos;o&apos;, &apos;o&apos;]</span><br><span class="line"># 计算l出现的次数</span><br><span class="line">&gt;&gt;&gt; a.count(&apos;l&apos;)</span><br><span class="line">2</span><br><span class="line">#将列表b合并到a上</span><br><span class="line">&gt;&gt;&gt; b = list(&apos;world&apos;)</span><br><span class="line">&gt;&gt;&gt; a.extend(b)</span><br><span class="line">&gt;&gt;&gt; a</span><br><span class="line">[&apos;h&apos;, &apos;e&apos;, &apos;l&apos;, &apos;l&apos;, &apos;o&apos;, &apos;w&apos;, &apos;o&apos;, &apos;r&apos;, &apos;l&apos;, &apos;d&apos;]</span><br><span class="line">#将字符串c合并到a上,效果与b相同，</span><br><span class="line">#因为字符串实质上还是单个字符的列表，使用extend合并相当于将字符串拆分成一个个的字符合并到列表里面去，插入字符串应该用下面的insert</span><br><span class="line">&gt;&gt;&gt;  c = &apos;world&apos;</span><br><span class="line">&gt;&gt;&gt; a.extend(c)</span><br><span class="line"># 查找&apos;l&apos;第一次出现的位置</span><br><span class="line">&gt;&gt;&gt; a.index(&apos;l&apos;)</span><br><span class="line">2</span><br><span class="line"># 在下标为0的位置插入&apos;x&apos;</span><br><span class="line">&gt;&gt;&gt; a.insert(0,&apos;x&apos;)</span><br><span class="line">&gt;&gt;&gt; a</span><br><span class="line">[&apos;x&apos;, &apos;h&apos;, &apos;e&apos;, &apos;l&apos;, &apos;l&apos;, &apos;o&apos;, &apos;o&apos;, &apos;w&apos;, &apos;o&apos;, &apos;r&apos;, &apos;l&apos;, &apos;d&apos;]</span><br><span class="line">#删除下标为0的元素,pop方法有返回值，此处也可以用 del a[0]</span><br><span class="line">&gt;&gt;&gt; a.pop(0)</span><br><span class="line">&apos;x&apos;</span><br><span class="line">&gt;&gt;&gt; a</span><br><span class="line">[&apos;h&apos;, &apos;e&apos;, &apos;l&apos;, &apos;l&apos;, &apos;o&apos;, &apos;o&apos;, &apos;w&apos;, &apos;o&apos;, &apos;r&apos;, &apos;l&apos;, &apos;d&apos;]</span><br><span class="line">#删除第一个匹配到的&apos;l&apos;</span><br><span class="line">&gt;&gt;&gt; a.remove(&apos;l&apos;)</span><br><span class="line">&gt;&gt;&gt; a</span><br><span class="line">[&apos;h&apos;, &apos;e&apos;, &apos;l&apos;, &apos;o&apos;, &apos;o&apos;, &apos;w&apos;, &apos;o&apos;, &apos;r&apos;, &apos;l&apos;, &apos;d&apos;]</span><br><span class="line">#排序</span><br><span class="line">&gt;&gt;&gt; a.sort()</span><br><span class="line">&gt;&gt;&gt; a</span><br><span class="line">[&apos;d&apos;, &apos;e&apos;, &apos;h&apos;, &apos;l&apos;, &apos;l&apos;, &apos;o&apos;, &apos;o&apos;, &apos;o&apos;, &apos;r&apos;, &apos;w&apos;]</span><br><span class="line">#列表转字符串</span><br><span class="line">&gt;&gt;&gt; &apos;,&apos;.join(a)</span><br><span class="line">&apos;d,e,h,l,l,o,o,o,r,w&apos;</span><br></pre></td></tr></table></figure>
+<h3 id="元组"><a href="#元组" class="headerlink" title="元组"></a>元组</h3><p>元组因为不可变，所以除了可以创建和访问外没有太多的操作</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">#创建空元组</span><br><span class="line">&gt;&gt;&gt; a = ()</span><br><span class="line">#创建一个元素的元组，需加逗号</span><br><span class="line">&gt;&gt;&gt; a = (1,)</span><br><span class="line">&gt;&gt;&gt; a</span><br><span class="line">(1,)</span><br></pre></td></tr></table></figure>
+<h3 id="字符串"><a href="#字符串" class="headerlink" title="字符串"></a>字符串</h3><p>字符串本身不可改变，所有对字符串的“改变”都是返回一个新的字符串。<br>关于字符串的操作经常会使用正则表达式(re模块)。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">str=&quot;hello world&quot;</span><br><span class="line"># 字符串就是由单个字符组成的元组序列,str[0]就是第一个字符h</span><br><span class="line"></span><br><span class="line"># 以下为string的内置方法</span><br><span class="line"># 首字母大写</span><br><span class="line">str.capitalize()</span><br><span class="line"># 全部大写</span><br><span class="line">str.upper()</span><br><span class="line"># 全部小写</span><br><span class="line">str.lower()</span><br><span class="line"># 替换,从左边开始,仅把1个o替换成0</span><br><span class="line">str.replace(old=&apos;o&apos;, new=&apos;0&apos;, count=1)</span><br><span class="line"># 从0:3的元素中进行查找,l是否出现,0为出现,-1为未出现</span><br><span class="line">str.find(&apos;l&apos;, 0, 3)</span><br><span class="line"># l第一次出现的位置</span><br><span class="line">str.index(&apos;l&apos;, 0, 3)</span><br><span class="line"># 从0:3,l出现的次数</span><br><span class="line">str.count(&apos;l&apos;, 0, 3)</span><br><span class="line"># 拆分字符串,仅拆分1次，即只拆分为2段</span><br><span class="line">str.split(sep=&apos;o&apos;, maxsplit=1)</span><br><span class="line">#连接字符串,先用&apos;o&apos;拆分,再用&apos;o&apos;连接</span><br><span class="line">seq = str.split(sep=&apos;o&apos;)</span><br><span class="line">&apos;o&apos;.join(seq)</span><br><span class="line">#删除开头结尾的字符,参数空则默认删除空白字符(包括\t\n\r\f\v)</span><br><span class="line">str.strip(&apos;d&apos;)</span><br></pre></td></tr></table></figure>
+<h2 id="映射"><a href="#映射" class="headerlink" title="映射"></a>映射</h2><h3 id="字典"><a href="#字典" class="headerlink" title="字典"></a>字典</h3><p><strong>基本操作:</strong><br>dict(zip(list1,list2))：将两个列表组合转换为字典,list1为键(如有重复项，去重)，list2为值<br>len()：返回字典的项(键值对)数<br>d[k]：返回字典中键=k的值<br>del d[k]：删除字典中键=k的项<br>k in d：检查字典中是否有键=k的项 ,等价于 k in d.keys()   </p>
+<p><strong>常用方法：</strong><br>clear：清空字典<br>get：根据给定的键返回对应的值，如果键不存在，返回None<br>items：将字典中项转化为列表，每个项以键值对(key,value)的形式作为列表的一个元素<br>keys：将字典的键以列表的形式返回，类似的iterkeys返回一个键的迭代器<br>values：将字典的值以列表的形式返回，类似的itervalues返回一个值得迭代器<br>pop：根据给定的键，移除对应的项,如果键不存在则报异常，并将移除项的值作为返回值<br>popitem：随机移除字典中的一个项，并将移除的项作为返回值<br>setdefault：根据给定的键返回对应的值，如果键不存在，添加这个键并设定对应的值(默认为None)<br>update: d1.update(d2),用字典d2去更新d1,对d1的键值对进行新增或更新   </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; a = &#123;&apos;name&apos;:&apos;xzm&apos;,&apos;age&apos;:18&#125;</span><br><span class="line"># 清空</span><br><span class="line">&gt;&gt;&gt; a.clear()</span><br><span class="line">&gt;&gt;&gt; a</span><br><span class="line">&#123;&#125;</span><br><span class="line">&gt;&gt;&gt; a = &#123;&apos;name&apos;:&apos;xzm&apos;,&apos;age&apos;:18&#125;</span><br><span class="line"># get</span><br><span class="line">&gt;&gt;&gt; a.get(&apos;name&apos;)</span><br><span class="line">&apos;xzm&apos;</span><br><span class="line">&gt;&gt;&gt; b = a.get(&apos;sex&apos;)</span><br><span class="line">&gt;&gt;&gt; type(b)</span><br><span class="line">&lt;class &apos;NoneType&apos;&gt;</span><br><span class="line">&gt;&gt;&gt; a.items()</span><br><span class="line">dict_items([(&apos;age&apos;, 18), (&apos;name&apos;, &apos;xzm&apos;)])</span><br><span class="line">&gt;&gt;&gt; a.keys()</span><br><span class="line">dict_keys([&apos;age&apos;, &apos;name&apos;])</span><br><span class="line">&gt;&gt;&gt; a.values()</span><br><span class="line">dict_values([18, &apos;xzm&apos;])</span><br><span class="line"># 删除项</span><br><span class="line">&gt;&gt;&gt; a.pop(&apos;age&apos;)</span><br><span class="line">18</span><br><span class="line">&gt;&gt;&gt; a</span><br><span class="line">&#123;&apos;name&apos;: &apos;xzm&apos;&#125;</span><br><span class="line">&gt;&gt;&gt; a.popitem()</span><br><span class="line">(&apos;name&apos;, &apos;xzm&apos;)</span><br><span class="line">&gt;&gt;&gt; a</span><br><span class="line">&#123;&#125;</span><br><span class="line"># setdefault</span><br><span class="line">&gt;&gt;&gt; a = &#123;&apos;name&apos;:&apos;xzm&apos;,&apos;age&apos;:18&#125;</span><br><span class="line">&gt;&gt;&gt; a.setdefault(&apos;name&apos;)</span><br><span class="line">&apos;xzm&apos;</span><br><span class="line">&gt;&gt;&gt; a.setdefault(&apos;sex&apos;,&apos;M&apos;)</span><br><span class="line">&apos;M&apos;</span><br><span class="line">&gt;&gt;&gt; a</span><br><span class="line">&#123;&apos;age&apos;: 18, &apos;sex&apos;: &apos;M&apos;, &apos;name&apos;: &apos;xzm&apos;&#125;</span><br><span class="line"># update,更新年龄，新增职业</span><br><span class="line">&gt;&gt;&gt; b = &#123;&apos;age&apos;:28,&apos;job&apos;:&apos;DA&apos;&#125;</span><br><span class="line">&gt;&gt;&gt; a.update(b)</span><br><span class="line">&gt;&gt;&gt; a</span><br><span class="line">&#123;&apos;job&apos;: &apos;DA&apos;, &apos;age&apos;: 28, &apos;sex&apos;: &apos;M&apos;, &apos;name&apos;: &apos;xzm&apos;&#125;</span><br></pre></td></tr></table></figure>
+<hr>
+<p><strong>That’s all.</strong><br><strong>Happy writing!</strong></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Python基础/" rel="tag">#Python基础</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/09/19/我的第一个H5项目(微信活动)/" rel="next" title="我的第一个H5项目(微信活动)">
+                <i class="fa fa-chevron-left"></i> 我的第一个H5项目(微信活动)
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/10/22/pip管理Python包/" rel="prev" title="pip管理Python包">
+                pip管理Python包 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image" src="/images/me.jpeg" alt="Brook.Xi">
+          <p class="site-author-name" itemprop="name">Brook.Xi</p>
+          <p class="site-description motion-element" itemprop="description">毋意, 毋必, 毋固, 毋我</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">21</span>
+              <span class="site-state-item-name">文章</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">15</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/xizhiming" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#简介"><span class="nav-number">1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#序列"><span class="nav-number">2.</span> <span class="nav-text">序列</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#通用操作"><span class="nav-number">2.1.</span> <span class="nav-text">通用操作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#列表"><span class="nav-number">2.2.</span> <span class="nav-text">列表</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#元组"><span class="nav-number">2.3.</span> <span class="nav-text">元组</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#字符串"><span class="nav-number">2.4.</span> <span class="nav-text">字符串</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#映射"><span class="nav-number">3.</span> <span class="nav-text">映射</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#字典"><span class="nav-number">3.1.</span> <span class="nav-text">字典</span></a></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Brook.Xi</span>
+</div>
+
+<div class="powered-by">
+  <a class="theme-link" href="https://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

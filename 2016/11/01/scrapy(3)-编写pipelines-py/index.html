@@ -1,0 +1,625 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css">
+
+
+  <meta name="keywords" content="Scrapy,">
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1">
+
+
+
+
+
+
+<meta name="description" content="pipelines.py中的类创建好scrapy项目(项目名称为test0)后，pipelines.py内会有一个默认的pipelines类，如下所示。12345# 当spider.py将提取的item结果提交至pipelines.py后，# 会默认首先调用Test0Pipeline类中的process_item方法对item数据进行处理。class Test0Pipeline(object):">
+<meta name="keywords" content="Scrapy">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Scrapy入门(3)：编写pipelines.py">
+<meta property="og:url" content="http://xizhiming.github.io/2016/11/01/scrapy(3)-编写pipelines-py/index.html">
+<meta property="og:site_name" content="Brook.Xi">
+<meta property="og:description" content="pipelines.py中的类创建好scrapy项目(项目名称为test0)后，pipelines.py内会有一个默认的pipelines类，如下所示。12345# 当spider.py将提取的item结果提交至pipelines.py后，# 会默认首先调用Test0Pipeline类中的process_item方法对item数据进行处理。class Test0Pipeline(object):">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2016-11-01T09:23:14.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Scrapy入门(3)：编写pipelines.py">
+<meta name="twitter:description" content="pipelines.py中的类创建好scrapy项目(项目名称为test0)后，pipelines.py内会有一个默认的pipelines类，如下所示。12345# 当spider.py将提取的item结果提交至pipelines.py后，# 会默认首先调用Test0Pipeline类中的process_item方法对item数据进行处理。class Test0Pipeline(object):">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://xizhiming.github.io/2016/11/01/scrapy(3)-编写pipelines-py/">
+
+  <title> Scrapy入门(3)：编写pipelines.py | Brook.Xi </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/index" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Brook.Xi</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/index" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Scrapy入门(3)：编写pipelines.py
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-11-01T13:26:45+08:00" content="2016-11-01">
+              2016-11-01
+            </time>
+          </span>
+
+          
+            <span class="post-category">
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Python/" itemprop="url" rel="index">
+                    <span itemprop="name">Python</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="pipelines-py中的类"><a href="#pipelines-py中的类" class="headerlink" title="pipelines.py中的类"></a>pipelines.py中的类</h2><p>创建好scrapy项目(项目名称为test0)后，pipelines.py内会有一个默认的pipelines类，如下所示。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"># 当spider.py将提取的item结果提交至pipelines.py后，</span><br><span class="line"># 会默认首先调用Test0Pipeline类中的process_item方法对item数据进行处理。</span><br><span class="line">class Test0Pipeline(object):</span><br><span class="line">    def process_item(self, item, spider):</span><br><span class="line">        return item</span><br></pre></td></tr></table></figure></p>
+<p>我们可以对类名进行修改，比如因为数据需要存储到Mysql数据库，我将类名改为<code>class MysqlPipeline(object)</code>。<br>但修改类名的同时需要记得去修改<code>settings.py</code>中的设置，否则程序会报错。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"># 修改前</span><br><span class="line">ITEM_PIPELINES = &#123;&apos;test0.pipelines.Test0Pipeline&apos;: 300&#125;</span><br><span class="line"># 修改后</span><br><span class="line">ITEM_PIPELINES = &#123;&apos;test0.pipelines.MysqlPipeline&apos;: 300&#125;</span><br></pre></td></tr></table></figure></p>
+<a id="more"></a>
+<h2 id="item数据的转换及存储"><a href="#item数据的转换及存储" class="headerlink" title="item数据的转换及存储"></a>item数据的转换及存储</h2><h3 id="数据转换"><a href="#数据转换" class="headerlink" title="数据转换"></a>数据转换</h3><p>去除商品名称两边的空白符<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">item[&apos;itemName&apos;] = item[&apos;itemName&apos;].strip()</span><br></pre></td></tr></table></figure></p>
+<p>列表转为字符串<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">item[&apos;havaStockSize&apos;] = &apos;,&apos;.join(item[&apos;havaStockSize&apos;])</span><br><span class="line">item[&apos;noneStockSize&apos;] = &apos;,&apos;.join(item[&apos;noneStockSize&apos;])</span><br></pre></td></tr></table></figure></p>
+<p>创建更新时间<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">import datetime</span><br><span class="line">item[&apos;updateTime&apos;] = datetime.datetime.now().strftime(&apos;%Y-%m-%d %H:%M:%S&apos;)</span><br></pre></td></tr></table></figure></p>
+<h3 id="商品图片上传至七牛云"><a href="#商品图片上传至七牛云" class="headerlink" title="商品图片上传至七牛云"></a>商品图片上传至七牛云</h3><blockquote>
+<p>需先申请好七牛云账号，代码可参考<a href="http://developer.qiniu.com/code/v6/sdk/nodejs.html" target="_blank" rel="noopener">七牛帮助文档</a><br>安装七牛包<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip3.5 install qiniu</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<p>使用七牛包<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"># urlretrieve，用来下载图片至本地</span><br><span class="line">from urllib.request import urlretrieve</span><br><span class="line"># 引用七牛包</span><br><span class="line">from qiniu import Auth, put_file</span><br><span class="line">qiniu_access_key = &apos;xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx&apos;</span><br><span class="line">qiniu_secret_key = &apos;xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx&apos;</span><br><span class="line"># 构建鉴权对象</span><br><span class="line">q = Auth(qiniu_access_key, qiniu_secret_key)</span><br><span class="line"># 要上传的空间名称</span><br><span class="line">bucket_name = &apos;xxxxxxxxxx&apos;</span><br><span class="line"># 图片在本地的存储地址,需要先使用下载至本地，再从本地上传到七牛云</span><br><span class="line">imageDir = &apos;../image/&apos;</span><br><span class="line"># 定义个一个上传商品展示图片的方法，参数包括产品ID-productID，展示图片的原http地址列表(多张图片)</span><br><span class="line">def ImgListUpload(self, productID, imgList):</span><br><span class="line">        i = 0</span><br><span class="line">        newImgList = []</span><br><span class="line">        for imgURL in imgList:</span><br><span class="line">            # 使用产品ID-productID + 一个递增数字 构造图片的新名称</span><br><span class="line">            imgName = productID + &quot;_&quot; + str(i) + &apos;.jpg&apos;</span><br><span class="line">            localfile = imageDir + imgName</span><br><span class="line">            try:</span><br><span class="line">                # 下载图片至本地</span><br><span class="line">                urlretrieve(imgURL, localfile)</span><br><span class="line">                # 生成上传Token，可以指定过期时间等</span><br><span class="line">                token = q.upload_token(bucket_name, imgName, 3600)</span><br><span class="line">                # 上传</span><br><span class="line">                ret, info = put_file(token, imgName, localfile)</span><br><span class="line">                if ret[&apos;key&apos;] == imgName:</span><br><span class="line">                    newImgList.append(imgName)</span><br><span class="line">                    # assert ret[&apos;key&apos;] == imgName, &apos;image上传失败&apos;</span><br><span class="line">                    # assert ret[&apos;hash&apos;] == etag(localfile)</span><br><span class="line">            except:</span><br><span class="line">                # 上传失败，将图片URL及构造的新图片名称记录日志</span><br><span class="line">                with open(&apos;imgError.txt&apos;, &apos;a&apos;) as f:</span><br><span class="line">                    f.write(imgURL + &quot;||&quot; + imgName + &quot;\n&quot;)</span><br><span class="line">            i += 1</span><br><span class="line">        # 返回结果：新的图片名称列表</span><br><span class="line">        # 如果使用的是七牛的public空间，直接用域名+图片名称组建URL地址即可访问图片</span><br><span class="line">        return newImgList</span><br></pre></td></tr></table></figure></p>
+<h3 id="商品数据存储至Mysql"><a href="#商品数据存储至Mysql" class="headerlink" title="商品数据存储至Mysql"></a>商品数据存储至Mysql</h3><p>使用pymysql包将数据存储至Mysql.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line">import pymysql</span><br><span class="line">import json</span><br><span class="line">import codecs</span><br><span class="line">conn = pymysql.connect(host=host,</span><br><span class="line">                       port=port,</span><br><span class="line">                       db=db,</span><br><span class="line">                       user=fabbi_bi[&apos;user&apos;],</span><br><span class="line">                       password=password,</span><br><span class="line">                       charset=&apos;utf8&apos;)</span><br><span class="line"># 先在数据库内查询sourceProductId是否已存在,如果已存在,只需要更新价格和库存信息,否则将这个商品新增入库</span><br><span class="line"># 商品入库或者信息被更新后,记录更新时间,更新状态.等全部商品处理完后将未做更新的商品视为下架商品</span><br><span class="line">try:</span><br><span class="line">    cur = conn.cursor()</span><br><span class="line">    selectSql = &quot;select id from item where sourceProductId=&apos;&quot; + item[&apos;sourceProductId&apos;] + &quot;&apos;;&quot;</span><br><span class="line">    cur.execute(selectSql)</span><br><span class="line">    sqlResult = cur.fetchone()</span><br><span class="line">    conn.commit()</span><br><span class="line">    # 商品新增入库</span><br><span class="line">    if sqlResult == None:</span><br><span class="line">        # 遍历字典item,对所有的值进行转义</span><br><span class="line">        for key in item:</span><br><span class="line">            item[key] = pymysql.escape_string(item[key])</span><br><span class="line">        # 拼接insert语句</span><br><span class="line">        column_name = &apos;&apos;  # 列的字段</span><br><span class="line">        column_value = &apos;&apos;  # 行字段</span><br><span class="line">        for key in item.keys():</span><br><span class="line">            if item[key] is None:</span><br><span class="line">                item[key] = &apos;&apos;</span><br><span class="line">            column_name = column_name + key + &apos;,&apos;</span><br><span class="line">            column_value = column_value + &quot;\&quot;&quot; + item[key] + &quot;\&quot;,&quot;</span><br><span class="line">        cur.execute(&quot;INSERT INTO item(%s) VALUES(%s)&quot; % (column_name[:-1], column_value[:-1]))</span><br><span class="line">        conn.commit()</span><br><span class="line">    # 商品已存在，更新商品的价格,库存,更新时间</span><br><span class="line">    else:</span><br><span class="line">        updateSql = &quot;UPDATE `scrapyItem`.`item` SET `price` = %s,`havaStockSize` = %s,`noneStockSize` = %s,`updateTime` = %s WHERE `sourceProductId` = %s;&quot;</span><br><span class="line">        cur.execute(updateSql, (item[&apos;price&apos;],</span><br><span class="line">                                item[&apos;havaStockSize&apos;],</span><br><span class="line">                                 item[&apos;noneStockSize&apos;],</span><br><span class="line">                                 item[&apos;updateTime&apos;],</span><br><span class="line">                                 item[&apos;sourceProductId&apos;])</span><br><span class="line">                    )</span><br><span class="line">        conn.commit()</span><br><span class="line">        cur.close()</span><br><span class="line">except:</span><br><span class="line">    with codecs.open(&apos;itemError.json&apos;, &apos;a&apos;, encoding=&apos;utf-8&apos;) as f:</span><br><span class="line">        f.write(json.dumps(dict(item), ensure_ascii=False) + &quot;\n&quot;)</span><br><span class="line">finally:</span><br><span class="line">    conn.close()</span><br></pre></td></tr></table></figure></p>
+<hr>
+<p><strong>That’s all.</strong><br><strong>Happy writing!</strong></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Scrapy/" rel="tag">#Scrapy</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/10/31/scrapy(2)-编写spider.py/" rel="next" title="Scrapy入门(2)：编写spider.py">
+                <i class="fa fa-chevron-left"></i> Scrapy入门(2)：编写spider.py
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/11/13/R语言数据结构-向量/" rel="prev" title="R语言数据结构：向量">
+                R语言数据结构：向量 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image" src="/images/me.jpeg" alt="Brook.Xi">
+          <p class="site-author-name" itemprop="name">Brook.Xi</p>
+          <p class="site-description motion-element" itemprop="description">毋意, 毋必, 毋固, 毋我</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">21</span>
+              <span class="site-state-item-name">文章</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">15</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/xizhiming" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#pipelines-py中的类"><span class="nav-number">1.</span> <span class="nav-text">pipelines.py中的类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#item数据的转换及存储"><span class="nav-number">2.</span> <span class="nav-text">item数据的转换及存储</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#数据转换"><span class="nav-number">2.1.</span> <span class="nav-text">数据转换</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#商品图片上传至七牛云"><span class="nav-number">2.2.</span> <span class="nav-text">商品图片上传至七牛云</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#商品数据存储至Mysql"><span class="nav-number">2.3.</span> <span class="nav-text">商品数据存储至Mysql</span></a></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Brook.Xi</span>
+</div>
+
+<div class="powered-by">
+  <a class="theme-link" href="https://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

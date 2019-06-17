@@ -1,0 +1,623 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css">
+
+
+  <meta name="keywords" content="shiny,">
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1">
+
+
+
+
+
+
+<meta name="description" content="每个Shiny app包含两部分的文件：ui.R(a user-interface definition),server.R(a server script)。ui.R定义app界面输入、输出格式和布局，server.R接受输入值，进行数据的处理计算，并将结果传递至ui.R进行展示。 ui.Rshiny包:fluidPage1shinyUI(fluidPage(...))">
+<meta name="keywords" content="shiny">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Shiny app的结构">
+<meta property="og:url" content="http://xizhiming.github.io/2016/11/25/Shiny-app的结构/index.html">
+<meta property="og:site_name" content="Brook.Xi">
+<meta property="og:description" content="每个Shiny app包含两部分的文件：ui.R(a user-interface definition),server.R(a server script)。ui.R定义app界面输入、输出格式和布局，server.R接受输入值，进行数据的处理计算，并将结果传递至ui.R进行展示。 ui.Rshiny包:fluidPage1shinyUI(fluidPage(...))">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2016-11-29T08:39:03.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Shiny app的结构">
+<meta name="twitter:description" content="每个Shiny app包含两部分的文件：ui.R(a user-interface definition),server.R(a server script)。ui.R定义app界面输入、输出格式和布局，server.R接受输入值，进行数据的处理计算，并将结果传递至ui.R进行展示。 ui.Rshiny包:fluidPage1shinyUI(fluidPage(...))">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://xizhiming.github.io/2016/11/25/Shiny-app的结构/">
+
+  <title> Shiny app的结构 | Brook.Xi </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/index" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Brook.Xi</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/index" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Shiny app的结构
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-11-25T18:53:01+08:00" content="2016-11-25">
+              2016-11-25
+            </time>
+          </span>
+
+          
+            <span class="post-category">
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/R/" itemprop="url" rel="index">
+                    <span itemprop="name">R</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>每个Shiny app包含两部分的文件：ui.R(a user-interface definition),server.R(a server script)。<br>ui.R定义app界面输入、输出格式和布局，server.R接受输入值，进行数据的处理计算，并将结果传递至ui.R进行展示。</p>
+<h2 id="ui-R"><a href="#ui-R" class="headerlink" title="ui.R"></a>ui.R</h2><h3 id="shiny包-fluidPage"><a href="#shiny包-fluidPage" class="headerlink" title="shiny包:fluidPage"></a>shiny包:fluidPage</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">shinyUI(fluidPage(...))</span><br></pre></td></tr></table></figure>
+<a id="more"></a>
+<h3 id="shinydashboard包-dashboardPage"><a href="#shinydashboard包-dashboardPage" class="headerlink" title="shinydashboard包:dashboardPage"></a>shinydashboard包:dashboardPage</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">shinyUI(dashboardPage(title=&quot;title&quot;,</span><br><span class="line">                      dashboardHeader(...),</span><br><span class="line">                      dashboardSidebar(...),</span><br><span class="line">                      dashboardBody(...),</span><br><span class="line">                      skin=&quot;green&quot;</span><br><span class="line">                      )</span><br><span class="line">        )</span><br></pre></td></tr></table></figure>
+<h4 id="dashboardSidebar与dashboardBody的互动"><a href="#dashboardSidebar与dashboardBody的互动" class="headerlink" title="dashboardSidebar与dashboardBody的互动"></a>dashboardSidebar与dashboardBody的互动</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"># 1、点击Sidebar的&quot;tab1标题&quot;时，Body展示table1</span><br><span class="line"># 2、点击Sidebar的&quot;tab2标题&quot;时，Body展示table2</span><br><span class="line">dashboardSidebar(</span><br><span class="line">  sidebarMenu(</span><br><span class="line">    menuItem(&quot;tab1标题&quot;, tabName = &quot;tab1&quot;, icon = icon(&quot;bar-chart&quot;)),</span><br><span class="line">    menuItem(&quot;tab2标题&quot;, tabName = &quot;tab2&quot;,icon = icon(&quot;th&quot;))</span><br><span class="line">    )</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">dashboardBody(</span><br><span class="line">  tabItems(</span><br><span class="line">    tabItem(tabName = &quot;tab1&quot;,dataTableOutput(&apos;table1&apos;)),</span><br><span class="line">    tabItem(tabName = &quot;tab2&quot;,dataTableOutput(&apos;table2&apos;))</span><br><span class="line">    )</span><br><span class="line">  )</span><br></pre></td></tr></table></figure>
+<h4 id="标签选项卡tabsetPanel-tabPanel"><a href="#标签选项卡tabsetPanel-tabPanel" class="headerlink" title="标签选项卡tabsetPanel,tabPanel"></a>标签选项卡tabsetPanel,tabPanel</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">tabsetPanel(type = &quot;tabs&quot;,</span><br><span class="line">            tabPanel(&quot;tab1&quot;,br(),h1(&apos;tab1&apos;)),</span><br><span class="line">            tabPanel(&quot;tab1&quot;,br(),h1(&apos;tab1&apos;))</span><br><span class="line">            )</span><br></pre></td></tr></table></figure>
+<h4 id="条件面板"><a href="#条件面板" class="headerlink" title="条件面板"></a>条件面板</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">conditionalPanel(</span><br><span class="line">  condition = &quot;input.breaks == &apos;custom&apos;&quot;,</span><br><span class="line">  sliderInput(&quot;breakCount&quot;, &quot;Break Count&quot;, min=1, max=1000, value=10)</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<h4 id="Row-Column-based-layout"><a href="#Row-Column-based-layout" class="headerlink" title="Row(Column)-based layout"></a>Row(Column)-based layout</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"># fluidRow内的元素按行横排布局</span><br><span class="line"># column内的元素按列竖排布局</span><br><span class="line">fluidRow(</span><br><span class="line">  column(width = 6, &apos;6_1&apos;,&apos;6_2&apos;,&apos;6_3&apos;)</span><br><span class="line">  column(width = 4, offset = 2,&apos;4 offset 2&apos;)</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<h2 id="server-R"><a href="#server-R" class="headerlink" title="server.R"></a>server.R</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">shinyServer(function(input, output, session) &#123;</span><br><span class="line">  # 接受输入</span><br><span class="line">  input_value &lt;- reactive(&#123;input$inputId&#125;)</span><br><span class="line">  # 数据处理、计算</span><br><span class="line">  # 输出结果</span><br><span class="line">  output$text &lt;- renderText(&#123;&apos;结果&apos;&#125;)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<hr>
+<p><strong>That’s all.</strong><br><strong>Happy writing!</strong></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/shiny/" rel="tag">#shiny</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/11/22/R语言访问数据库/" rel="next" title="R语言访问数据库">
+                <i class="fa fa-chevron-left"></i> R语言访问数据库
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/11/28/Shiny-app的输入与输出/" rel="prev" title="Shiny app的输入与输出">
+                Shiny app的输入与输出 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image" src="/images/me.jpeg" alt="Brook.Xi">
+          <p class="site-author-name" itemprop="name">Brook.Xi</p>
+          <p class="site-description motion-element" itemprop="description">毋意, 毋必, 毋固, 毋我</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">21</span>
+              <span class="site-state-item-name">文章</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">15</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/xizhiming" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#ui-R"><span class="nav-number">1.</span> <span class="nav-text">ui.R</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#shiny包-fluidPage"><span class="nav-number">1.1.</span> <span class="nav-text">shiny包:fluidPage</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#shinydashboard包-dashboardPage"><span class="nav-number">1.2.</span> <span class="nav-text">shinydashboard包:dashboardPage</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#dashboardSidebar与dashboardBody的互动"><span class="nav-number">1.2.1.</span> <span class="nav-text">dashboardSidebar与dashboardBody的互动</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#标签选项卡tabsetPanel-tabPanel"><span class="nav-number">1.2.2.</span> <span class="nav-text">标签选项卡tabsetPanel,tabPanel</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#条件面板"><span class="nav-number">1.2.3.</span> <span class="nav-text">条件面板</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Row-Column-based-layout"><span class="nav-number">1.2.4.</span> <span class="nav-text">Row(Column)-based layout</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#server-R"><span class="nav-number">2.</span> <span class="nav-text">server.R</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Brook.Xi</span>
+</div>
+
+<div class="powered-by">
+  <a class="theme-link" href="https://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

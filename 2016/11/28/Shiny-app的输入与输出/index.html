@@ -1,0 +1,623 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css">
+
+
+  <meta name="keywords" content="shiny,">
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1">
+
+
+
+
+
+
+<meta name="description" content="输入在ui.R中运用控件输入value，在server.R中实时调用value进行计算。">
+<meta name="keywords" content="shiny">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Shiny app的输入与输出">
+<meta property="og:url" content="http://xizhiming.github.io/2016/11/28/Shiny-app的输入与输出/index.html">
+<meta property="og:site_name" content="Brook.Xi">
+<meta property="og:description" content="输入在ui.R中运用控件输入value，在server.R中实时调用value进行计算。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2016-11-29T08:39:03.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Shiny app的输入与输出">
+<meta name="twitter:description" content="输入在ui.R中运用控件输入value，在server.R中实时调用value进行计算。">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://xizhiming.github.io/2016/11/28/Shiny-app的输入与输出/">
+
+  <title> Shiny app的输入与输出 | Brook.Xi </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/index" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Brook.Xi</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/index" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Shiny app的输入与输出
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-11-28T19:08:39+08:00" content="2016-11-28">
+              2016-11-28
+            </time>
+          </span>
+
+          
+            <span class="post-category">
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/R/" itemprop="url" rel="index">
+                    <span itemprop="name">R</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="输入"><a href="#输入" class="headerlink" title="输入"></a>输入</h2><p>在ui.R中运用控件输入value，在server.R中实时调用value进行计算。<br><a id="more"></a></p>
+<h3 id="ui-R"><a href="#ui-R" class="headerlink" title="ui.R"></a>ui.R</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br></pre></td><td class="code"><pre><span class="line">动作按钮:</span><br><span class="line">actionButton(&quot;action&quot;, label = &quot;Action&quot;)</span><br><span class="line"></span><br><span class="line">提交按钮:</span><br><span class="line">submitButton(text=&quot;开始查询&quot;, icon(&quot;refresh&quot;))</span><br><span class="line"></span><br><span class="line">帮助文本框：</span><br><span class="line">helpText(&quot;帮助文本。。。。。。。&quot;)</span><br><span class="line"></span><br><span class="line">数字输入框：</span><br><span class="line">numericInput(&quot;num&quot;,label = h3(&quot;Numeric input&quot;),value = 1)</span><br><span class="line">                                   </span><br><span class="line">数字滑动条：</span><br><span class="line">sliderInput(&quot;slider&quot;, label = h3(&quot;Sliders&quot;),</span><br><span class="line">			 min = 0, max = 100, value = c(25, 75))</span><br><span class="line"></span><br><span class="line">文本输入框:</span><br><span class="line">textInput(&quot;article_ID&quot;, &quot;文章ID&quot;, value = &quot;&quot;)</span><br><span class="line"></span><br><span class="line">单选按钮:</span><br><span class="line">radioButtons(&quot;hope_year&quot;, &quot;年份选择:&quot;,</span><br><span class="line">			  c(&quot;2015年&quot; = 2015,&quot;2016年&quot; = 2016),</span><br><span class="line">			  selected=&quot;2016&quot;,</span><br><span class="line">			  inline=TRUE)</span><br><span class="line"></span><br><span class="line">下拉框选择(单选或多选)：</span><br><span class="line">selectInput(&quot;year&quot;, &quot;年份选择:&quot;,</span><br><span class="line">			 choices=c(&quot;全部&quot; = 999,&quot;2016&quot; = 2016,&quot;2017&quot; = 2017),selected=999,</span><br><span class="line">			 multiple=TRUE, selectize=TRUE</span><br><span class="line">			 )</span><br><span class="line">			 </span><br><span class="line">复选框:</span><br><span class="line">checkboxGroupInput(&quot;device&quot;, &quot;设备&quot;,</span><br><span class="line">					choices=c(&quot;pc&quot; = 0,&quot;wap&quot; = 1,&quot;app&quot; = 2),</span><br><span class="line">					selected=c(1,2),</span><br><span class="line">					inline=TRUE)</span><br><span class="line">                                          </span><br><span class="line">单选框(是/否):默认值设置为FALSE</span><br><span class="line">checkboxInput(&quot;type&quot;, label = &quot;是否包含&quot;, value = FALSE)</span><br><span class="line"></span><br><span class="line">日期选择：</span><br><span class="line">dateInput(&quot;date&quot;, label = h3(&quot;Date input&quot;), value = &quot;2014-01-01&quot;)</span><br><span class="line"></span><br><span class="line">日期区间选择:</span><br><span class="line">dateRangeInput(&quot;dateRange&quot;, &quot;日期:&quot;,language=&quot;zh-CN&quot;,</span><br><span class="line">				start=Sys.Date()-7,end=Sys.Date()-1,</span><br><span class="line">				min = NULL,max = NULL,</span><br><span class="line">				format=&quot;yy-mm-dd&quot;)</span><br><span class="line"></span><br><span class="line">上传文件：</span><br><span class="line">fileInput(&apos;file1&apos;, &apos;上传UID(txt文档)&apos;,accept = c(&apos;.csv&apos;,&apos;.tsv&apos;))</span><br><span class="line"></span><br><span class="line"># server.R端使用文件          </span><br><span class="line">inFile &lt;- input$file1</span><br><span class="line">if (is.null(inFile))</span><br><span class="line">   return(NULL)</span><br><span class="line">users &lt;- read.csv(inFile$datapath, header = F ,sep = &apos;,&apos;, quote = &apos;&apos;,stringsAsFactors=FALSE)</span><br></pre></td></tr></table></figure>
+<h3 id="server-R"><a href="#server-R" class="headerlink" title="server.R"></a>server.R</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">input_value &lt;- reactive(&#123;input$inputId&#125;)</span><br></pre></td></tr></table></figure>
+<h2 id="输出"><a href="#输出" class="headerlink" title="输出"></a>输出</h2><p>在server.R中使用<code>render*</code>函数将计算结果传输至ui.R,再在ui.R中使用<code>*Output</code>函数展现</p>
+<h3 id="text"><a href="#text" class="headerlink" title="text"></a>text</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"># server.R</span><br><span class="line">output$TextName &lt;- renderText (&#123;&apos;文本输出&apos;&#125;)</span><br><span class="line"></span><br><span class="line"># ui.R</span><br><span class="line">textOutput(&quot;TextName&quot;)</span><br></pre></td></tr></table></figure>
+<h3 id="table"><a href="#table" class="headerlink" title="table"></a>table</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"># server.R</span><br><span class="line">output$TableName &lt;- renderDataTable(&#123;table_data&#125;)</span><br><span class="line"></span><br><span class="line"># ui.R</span><br><span class="line">dataTableOutput(&quot;TableName&quot;)</span><br></pre></td></tr></table></figure>
+<h3 id="自定义ui"><a href="#自定义ui" class="headerlink" title="自定义ui"></a>自定义ui</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"># server.R</span><br><span class="line">output$CustomUiName &lt;- renderUI(&#123;ui_content&#125;)</span><br><span class="line"></span><br><span class="line"># ui.R</span><br><span class="line">uiOutput(&quot;CustomUiName&quot;)</span><br></pre></td></tr></table></figure>
+<h3 id="下载数据"><a href="#下载数据" class="headerlink" title="下载数据"></a>下载数据</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"># server.R</span><br><span class="line">output$DownloadData &lt;- downloadHandler(</span><br><span class="line">    filename = function() &#123;&quot;title&quot;&#125;,</span><br><span class="line">    content = function(con) &#123;</span><br><span class="line">    	write.csv(data, con, row.names = FALSE,fileEncoding = &quot;GBK&quot;)</span><br><span class="line">    	&#125;</span><br><span class="line">    )</span><br><span class="line"></span><br><span class="line"># ui.R</span><br><span class="line">downloadButton(&quot;DownloadData&quot;, &quot;导出数据&quot;)</span><br></pre></td></tr></table></figure>
+<h3 id="图形"><a href="#图形" class="headerlink" title="图形"></a>图形</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"># server.R</span><br><span class="line">output$Plot &lt;- renderPlot(&#123;ggplot(...)&#125;)</span><br><span class="line"></span><br><span class="line"># ui.R</span><br><span class="line">plotOutput(&quot;Plot&quot;,width = &quot;50%&quot;)</span><br></pre></td></tr></table></figure>
+<hr>
+<p><strong>That’s all.</strong><br><strong>Happy writing!</strong></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/shiny/" rel="tag">#shiny</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/11/25/Shiny-app的结构/" rel="next" title="Shiny app的结构">
+                <i class="fa fa-chevron-left"></i> Shiny app的结构
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/11/30/数据可视化-R与Echarts/" rel="prev" title="数据可视化:R与Echarts">
+                数据可视化:R与Echarts <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image" src="/images/me.jpeg" alt="Brook.Xi">
+          <p class="site-author-name" itemprop="name">Brook.Xi</p>
+          <p class="site-description motion-element" itemprop="description">毋意, 毋必, 毋固, 毋我</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">21</span>
+              <span class="site-state-item-name">文章</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">15</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/xizhiming" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#输入"><span class="nav-number">1.</span> <span class="nav-text">输入</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#ui-R"><span class="nav-number">1.1.</span> <span class="nav-text">ui.R</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#server-R"><span class="nav-number">1.2.</span> <span class="nav-text">server.R</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#输出"><span class="nav-number">2.</span> <span class="nav-text">输出</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#text"><span class="nav-number">2.1.</span> <span class="nav-text">text</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#table"><span class="nav-number">2.2.</span> <span class="nav-text">table</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#自定义ui"><span class="nav-number">2.3.</span> <span class="nav-text">自定义ui</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#下载数据"><span class="nav-number">2.4.</span> <span class="nav-text">下载数据</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#图形"><span class="nav-number">2.5.</span> <span class="nav-text">图形</span></a></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Brook.Xi</span>
+</div>
+
+<div class="powered-by">
+  <a class="theme-link" href="https://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

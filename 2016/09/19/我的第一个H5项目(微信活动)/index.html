@@ -1,0 +1,638 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css">
+
+
+  <meta name="keywords" content="H5微信活动,">
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1">
+
+
+
+
+
+
+<meta name="description" content="前言整个项目开发过程中遇到了很多的问题,包括页面样式、页面布局、背景音乐、图片预加载、页面交互(touch和shake)、微信自定义分享等等。下面将会一一阐述。">
+<meta name="keywords" content="H5微信活动">
+<meta property="og:type" content="article">
+<meta property="og:title" content="我的第一个H5项目(微信活动)">
+<meta property="og:url" content="http://xizhiming.github.io/2016/09/19/我的第一个H5项目(微信活动)/index.html">
+<meta property="og:site_name" content="Brook.Xi">
+<meta property="og:description" content="前言整个项目开发过程中遇到了很多的问题,包括页面样式、页面布局、背景音乐、图片预加载、页面交互(touch和shake)、微信自定义分享等等。下面将会一一阐述。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2016-11-16T08:09:24.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="我的第一个H5项目(微信活动)">
+<meta name="twitter:description" content="前言整个项目开发过程中遇到了很多的问题,包括页面样式、页面布局、背景音乐、图片预加载、页面交互(touch和shake)、微信自定义分享等等。下面将会一一阐述。">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://xizhiming.github.io/2016/09/19/我的第一个H5项目(微信活动)/">
+
+  <title> 我的第一个H5项目(微信活动) | Brook.Xi </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/index" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Brook.Xi</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/index" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                我的第一个H5项目(微信活动)
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-09-19T18:55:41+08:00" content="2016-09-19">
+              2016-09-19
+            </time>
+          </span>
+
+          
+            <span class="post-category">
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Web开发/" itemprop="url" rel="index">
+                    <span itemprop="name">Web开发</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>整个项目开发过程中遇到了很多的问题,包括页面样式、页面布局、背景音乐、图片预加载、页面交互(touch和shake)、微信自定义分享等等。下面将会一一阐述。<br><a id="more"></a></p>
+<hr>
+<h2 id="页面样式与布局"><a href="#页面样式与布局" class="headerlink" title="页面样式与布局"></a>页面样式与布局</h2><p>因为需要有统一的背景音乐，所以最终呈现的<strong>页面</strong>实际上都是一个个的<code>&lt;div&gt;</code>块，根据页面的交互使用jquery操作css属性<code>display: none/block;</code>来控制<code>&lt;div&gt;</code>块的隐藏与显示。<br>为了简化开发，页面的所有元素都是直接使用设计师裁剪好的图片，即可以100%还原设计师的设计原型，也省去了页面样式的配置。</p>
+<ul>
+<li>将页面中所有会发生交互的元素剥离后，剩余部分直接作为页面的背景图片。</li>
+<li>针对会发生交互的元素，以一个button为例，并使用css去配置button的样式，而是把设计师裁剪好的整个button图片直接放到页面上。</li>
+</ul>
+<p>背景图片的更换<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$(&quot;body&quot;).attr(&apos;background&apos;,&apos;../images/ML.gif&apos;);</span><br></pre></td></tr></table></figure></p>
+<p>背景图片自适应屏幕<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">body&#123;</span><br><span class="line">    background-position: center;</span><br><span class="line">    background-repeat: no-repeat;</span><br><span class="line">    background-attachment: fixed;</span><br><span class="line">    background-size:cover;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>可交互元素(仍然是图片)的样式与布局<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- 图片的大小及水平布局 --&gt;</span><br><span class="line">&lt;div id=&quot;kissMiddle&quot; class=&quot;col-sm-12&quot; style=&quot;padding-left: 18%&quot;&gt;</span><br><span class="line">	&lt;img id=&quot;kissImg&quot; src=&quot;../images/亲.gif&quot; alt=&quot;&quot; class=&quot;img-rounded&quot; width=&quot;80%&quot; style=&quot;float: left&quot;&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&lt;!-- 图片的垂直布局,自适应屏幕高度 --&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">$(document).ready(function () &#123;</span><br><span class="line"> 	document.getElementById(&quot;kissMiddle&quot;).style.paddingTop = document.documentElement.clientHeight*0.28+&quot;px&quot;;</span><br><span class="line">&lt;/script&gt;</span><br><span class="line">&lt;!-- 图片堆叠 --&gt;</span><br><span class="line">#id_&#123;</span><br><span class="line">    position: absolute;</span><br><span class="line">    top: 0;</span><br><span class="line">    left:0;</span><br><span class="line">    z-index: 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<hr>
+<h2 id="背景音乐"><a href="#背景音乐" class="headerlink" title="背景音乐"></a>背景音乐</h2><h3 id="html标签"><a href="#html标签" class="headerlink" title="html标签"></a>html标签</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- 旋转动画的图片 --&gt;</span><br><span class="line">&lt;div&gt;</span><br><span class="line">    &lt;div class=&quot;musicImg&quot;&gt;</span><br><span class="line">        &lt;img id=&quot;rotate&quot; class=&quot;rotate&quot; src=&quot;../images/music.png&quot; onclick=&quot;playPause()&quot; width=&quot;100%&quot;/&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&lt;!-- audio标签 --&gt;</span><br><span class="line">&lt;div id=&quot;music&quot; style=&quot;display: none&quot;&gt;</span><br><span class="line">    &lt;audio id=&quot;audioplay&quot; loop=&quot;loop&quot; autoplay=&quot;autoplay&quot; controls=&quot;controls&quot;&gt;</span><br><span class="line">        &lt;source src=&quot;../audio/music1.mp3&quot; /&gt;</span><br><span class="line">    &lt;/audio&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="旋转动画-css"><a href="#旋转动画-css" class="headerlink" title="旋转动画(css)"></a>旋转动画(css)</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">/* 音乐旋转图片 */</span><br><span class="line">.musicImg&#123;</span><br><span class="line">    position: absolute;</span><br><span class="line">    top: 30px;</span><br><span class="line">    right: 30px;</span><br><span class="line">    width:70px;</span><br><span class="line">    float: right;</span><br><span class="line">    z-index: 1</span><br><span class="line">&#125;</span><br><span class="line">/* 音乐旋转动画 */</span><br><span class="line">.rotate &#123;</span><br><span class="line">    -webkit-animation: rotating 1.2s linear infinite;</span><br><span class="line">    -moz-animation: rotating 1.2s linear infinite;</span><br><span class="line">    -o-animation: rotating 1.2s linear infinite;</span><br><span class="line">    animation: rotating 1.2s linear infinite;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">@-webkit-keyframes rotating &#123;</span><br><span class="line">    0% &#123;</span><br><span class="line">        transform: rotate(0deg);</span><br><span class="line">    &#125;</span><br><span class="line">    100% &#123;</span><br><span class="line">        transform: rotate(360deg);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="播放及暂停-js"><a href="#播放及暂停-js" class="headerlink" title="播放及暂停(js)"></a>播放及暂停(js)</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">function playPause()&#123;</span><br><span class="line">    var audio = document.getElementById(&apos;audioplay&apos;);</span><br><span class="line">	//console.log(&quot;1&quot; + audio.played);</span><br><span class="line">	//console.log(&quot;2&quot; + audio.paused);</span><br><span class="line">	if(audio.paused)&#123;</span><br><span class="line">		audio.play();</span><br><span class="line">		$(&quot;#rotate&quot;).attr(&quot;class&quot;,&quot;rotate&quot;);</span><br><span class="line">	&#125;else&#123;</span><br><span class="line">		audio.pause();</span><br><span class="line">		$(&quot;#rotate&quot;).attr(&quot;class&quot;,&quot;rotate_stop&quot;);</span><br><span class="line">		&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<hr>
+<h2 id="图片预加载"><a href="#图片预加载" class="headerlink" title="图片预加载"></a>图片预加载</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- 图片预加载 --&gt;</span><br><span class="line">&lt;div style=&quot;display: none&quot;&gt;</span><br><span class="line">   &lt;script&gt;</span><br><span class="line">       if (document.images) &#123;</span><br><span class="line">           var imgML = new Image();</span><br><span class="line">           imgML.src = &quot;../images/ML.gif&quot;;</span><br><span class="line">           $(&quot;body&quot;).attr(&apos;background&apos;,&apos;../images/ML.gif&apos;);</span><br><span class="line"></span><br><span class="line">           var img1 = new Image();</span><br><span class="line">           var img2 = new Image();</span><br><span class="line">           var img3 = new Image();</span><br><span class="line">           var img4 = new Image();</span><br><span class="line">           var img5 = new Image();</span><br><span class="line">           var img6 = new Image();</span><br><span class="line">           var img7 = new Image();</span><br><span class="line">           img1.src = &quot;../images/1.jpg&quot;;</span><br><span class="line">           img2.src = &quot;../images/2.jpg&quot;;</span><br><span class="line">           img3.src = &quot;../images/3.jpg&quot;;</span><br><span class="line">           img4.src = &quot;../images/4.jpg&quot;;</span><br><span class="line">           img5.src = &quot;../images/5.jpg&quot;;</span><br><span class="line">           img6.src = &quot;../images/6.jpg&quot;;</span><br><span class="line">           img7.src = &quot;../images/重新扫描.png&quot;;</span><br><span class="line">       &#125;</span><br><span class="line">   &lt;/script&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+<hr>
+<h2 id="页面交互-touch和shake"><a href="#页面交互-touch和shake" class="headerlink" title="页面交互(touch和shake)"></a>页面交互(touch和shake)</h2><h3 id="多点触控-touch"><a href="#多点触控-touch" class="headerlink" title="多点触控,touch"></a>多点触控,touch</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">var kiss = document.querySelector(&quot;#kissImg&quot;);</span><br><span class="line">var fingers;</span><br><span class="line">kiss.addEventListener(&quot;touchstart&quot;, function (e)&#123;</span><br><span class="line">	fingers = e.touches.length;</span><br><span class="line">	&#125;);</span><br><span class="line">kiss.addEventListener(&quot;touchend&quot;, function (e)&#123;</span><br><span class="line">	if(fingers&gt;=2)&#123;</span><br><span class="line">		//满足2点触控，往下执行</span><br><span class="line">	&#125;else&#123;</span><br><span class="line">		//少于2点，往下执行</span><br><span class="line">	&#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<h3 id="向上滑动-touch"><a href="#向上滑动-touch" class="headerlink" title="向上滑动,touch"></a>向上滑动,touch</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">var b = document.getElementsByTagName(&quot;body&quot;)[0];</span><br><span class="line">b.addEventListener(&quot;touchmove&quot;, function(e) &#123;</span><br><span class="line">	e.preventDefault();</span><br><span class="line">&#125;);</span><br><span class="line">var startY,endY;</span><br><span class="line">var el = document.querySelector(&quot;#index&quot;);</span><br><span class="line">//获取点击开始的坐标</span><br><span class="line">el.addEventListener(&quot;touchstart&quot;, function (e)&#123;</span><br><span class="line">	startY = e.touches[0].screenY;</span><br><span class="line">&#125;);</span><br><span class="line">//获取点击结束后的坐标</span><br><span class="line">el.addEventListener(&quot;touchend&quot;, function(e)&#123;</span><br><span class="line">	endY = e.changedTouches[0].screenY;</span><br><span class="line">	if((startY - endY)&gt;30)&#123;</span><br><span class="line">		//满足移动距离大于30px,往下执行</span><br><span class="line">	&#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<h3 id="摇一摇-shake"><a href="#摇一摇-shake" class="headerlink" title="摇一摇,shake"></a>摇一摇,shake</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- 引用第三方包 --&gt;</span><br><span class="line">&lt;script src=&quot;../js/shake.js&quot;&gt;&lt;/script&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">var myShakeEvent = new Shake(&#123;</span><br><span class="line">	threshold: 10</span><br><span class="line">	//摇动幅度</span><br><span class="line">&#125;);</span><br><span class="line">myShakeEvent.start();</span><br><span class="line">window.addEventListener(&apos;shake&apos;, shakeEventDidOccur, false);</span><br><span class="line"></span><br><span class="line">function shakeEventDidOccur () &#123;</span><br><span class="line">	//可以用if增加条件指定div块内触发摇一摇后才往下执行</span><br><span class="line">	//摇一摇触发后，往下执行</span><br><span class="line">&#125;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+<hr>
+<h2 id="微信自定义分享"><a href="#微信自定义分享" class="headerlink" title="微信自定义分享"></a>微信自定义分享</h2><h3 id="中控服务器计算签名"><a href="#中控服务器计算签名" class="headerlink" title="中控服务器计算签名"></a>中控服务器计算签名</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br></pre></td><td class="code"><pre><span class="line">//Node.js实现,以下为主体代码</span><br><span class="line">function getToken(callback) &#123;</span><br><span class="line">    var getTokenUrl = &apos;https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&amp;appId=&apos;;</span><br><span class="line">    getTokenUrl = getTokenUrl + appId + &apos;&amp;secret=&apos; + appSecret;</span><br><span class="line">    request.get(getTokenUrl, function(error, response, body) &#123;</span><br><span class="line">        if (error) &#123;</span><br><span class="line">            callback(&apos;1_getToken error&apos;, error);</span><br><span class="line">        &#125;</span><br><span class="line">        else &#123;</span><br><span class="line">            try &#123;</span><br><span class="line">                var token = JSON.parse(body).access_token;</span><br><span class="line">                callback(null, token);</span><br><span class="line">            &#125; catch (e) &#123;</span><br><span class="line">                callback(&apos;2_getToken error&apos;, e);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function getTicket(callback) &#123;</span><br><span class="line">    var nowTime = Math.floor(new Date().getTime() / 1000);</span><br><span class="line">    //先判定ticket是否过期,如果抓取不到数据,设定为过期</span><br><span class="line">    try&#123;</span><br><span class="line">        var ticketStore = JSON.parse(fs.readFileSync(&apos;./js_sdk_ticket.json&apos;));</span><br><span class="line">    &#125; catch(e)&#123;</span><br><span class="line">        var ticketStore  = &#123;ticket:&apos;&apos;,time: 0&#125;;</span><br><span class="line">    &#125;</span><br><span class="line">    //ticket有效时间是7200s,这里放宽一点</span><br><span class="line">    if(ticketStore.time + 7000 &gt; nowTime)&#123;</span><br><span class="line">        console.log(&quot;读取json文件中的ticket成功&quot;)</span><br><span class="line">        callback(null,ticketStore.ticket)</span><br><span class="line">    &#125;else&#123;</span><br><span class="line">        getToken(function(resultType,token)&#123;</span><br><span class="line">            if(resultType != null)&#123;</span><br><span class="line">                console.log(&apos;getNewTicket获取token错误: &apos; + resultType);</span><br><span class="line">                callback(&apos;getNewTicket获取token错误&apos;,resultType);</span><br><span class="line">            &#125;else&#123;</span><br><span class="line">                console.log(&quot;getNewTicket获取token成功: &quot; + token);</span><br><span class="line">                var getTicketUrl = &apos;https://api.weixin.qq.com/cgi-bin/ticket/getticket?access_token=&apos;;</span><br><span class="line">                getTicketUrl = getTicketUrl + token + &apos;&amp;type=jsapi&apos;;</span><br><span class="line">                request.get(getTicketUrl, function(error, res, body) &#123;</span><br><span class="line">                    if (error) &#123;</span><br><span class="line">                        callback(&apos;getNewTicket error&apos;, error);</span><br><span class="line">                    &#125;</span><br><span class="line">                    else &#123;</span><br><span class="line">                        try &#123;</span><br><span class="line">                            var ticket = JSON.parse(body).ticket;</span><br><span class="line">                            fs.writeFileSync(&apos;./js_sdk_ticket.json&apos;,JSON.stringify(&#123;ticket:ticket,time:nowTime&#125;));</span><br><span class="line">                            callback(null, ticket);</span><br><span class="line">                        &#125; catch (e) &#123;</span><br><span class="line">                            callback(&apos;getNewTicket error&apos;, e);</span><br><span class="line">                        &#125;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function getSigmature(config,url,callback)&#123;</span><br><span class="line">    getTicket(function(resultType,ticket)&#123;</span><br><span class="line">        if(resultType != null)&#123;</span><br><span class="line">            console.log(&apos;getSigmature获取ticket错误: &apos; + resultType2);</span><br><span class="line">            callback(&apos;getSigmature获取ticket错误:&apos;,resultType2);</span><br><span class="line">        &#125;else&#123;</span><br><span class="line">            console.log(&quot;getSigmature获取ticket成功: &quot; + ticket);</span><br><span class="line">            var str = &apos;jsapi_ticket=&apos; + ticket + &apos;&amp;noncestr=&apos; + config.nonceStr + &apos;&amp;timestamp=&apos; + config.timestamp + &apos;&amp;url=&apos; + url;</span><br><span class="line">            config.signature = crypto.createHash(&quot;sha1&quot;).update(str,&apos;utf-8&apos;).digest(&quot;hex&quot;);</span><br><span class="line">            config.ticket = ticket;</span><br><span class="line">            callback(null,config)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">router.get(&quot;/&quot;,function(req,res,next)&#123;</span><br><span class="line">    var jsConfigInfo = &#123;</span><br><span class="line">        timestamp: Math.floor(new Date().getTime() / 1000),</span><br><span class="line">        nonceStr:Math.random().toString(36).substr(2, 15),</span><br><span class="line">        ticket:&quot;&quot;,</span><br><span class="line">        signature:&quot;&quot;</span><br><span class="line">    &#125;;</span><br><span class="line">    var signUrl = req.query.signUrl;</span><br><span class="line">    getSigmature(jsConfigInfo,signUrl,function(resultType,config)&#123;</span><br><span class="line">        res.send(config);</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<h3 id="请求中控服务器获取签名"><a href="#请求中控服务器获取签名" class="headerlink" title="请求中控服务器获取签名"></a>请求中控服务器获取签名</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">//Node.js实现</span><br><span class="line">function getConfigInfo(url,callback) &#123;</span><br><span class="line">    request.get(&quot;请求中控服务器的API接口地址?signUrl=&quot; + url, function (error, res, body) &#123;</span><br><span class="line">        if (!error) &#123;</span><br><span class="line">            console.log(body);</span><br><span class="line">            callback(body)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">router.get(&apos;/index&apos;,function(req,res,next)&#123;</span><br><span class="line">    var url = &apos;http://xxx.xxx.com&apos; + req.originalUrl;</span><br><span class="line">    url = encodeURIComponent(url);</span><br><span class="line">    getConfigInfo(url,function(body)&#123;</span><br><span class="line">        if(body != null)&#123;</span><br><span class="line">            console.log(body);</span><br><span class="line">            body = JSON.parse(body);</span><br><span class="line">            res.locals.timestamp = + body.timestamp;</span><br><span class="line">            res.locals.nonceStr = body.nonceStr;</span><br><span class="line">            res.locals.signature = body.signature;</span><br><span class="line">        &#125;</span><br><span class="line">        res.render(&apos;redLip/index&apos;,&#123;title:&apos;XXX&apos;&#125;);</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<h3 id="设置自定义分享的内容"><a href="#设置自定义分享的内容" class="headerlink" title="设置自定义分享的内容"></a>设置自定义分享的内容</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">function customShare() &#123;</span><br><span class="line">    wx.onMenuShareTimeline(&#123;</span><br><span class="line">        title: CustomTitle, // 分享标题</span><br><span class="line">        link: CustomLink, // 分享链接</span><br><span class="line">        imgUrl: CustomimgUrl, // 分享图标</span><br><span class="line">        success: function () &#123;</span><br><span class="line">            // 用户确认分享后执行的回调函数</span><br><span class="line">        &#125;,</span><br><span class="line">        cancel: function () &#123;</span><br><span class="line">            // 用户取消分享后执行的回调函数</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">    wx.onMenuShareAppMessage(&#123;</span><br><span class="line">        title: CustomTitle, // 分享标题</span><br><span class="line">        desc: &apos;xxxxxxx&apos;, // 分享描述</span><br><span class="line">        link: CustomLink, // 分享链接</span><br><span class="line">        imgUrl: CustomimgUrl, // 分享图标</span><br><span class="line">        type: &apos;link&apos;, // 分享类型,music、video或link，不填默认为link</span><br><span class="line">        dataUrl: &apos;&apos;, // 如果type是music或video，则要提供数据链接，默认为空</span><br><span class="line">        success: function () &#123;</span><br><span class="line">            // 用户确认分享后执行的回调函数</span><br><span class="line">        &#125;,</span><br><span class="line">        cancel: function () &#123;</span><br><span class="line">            // 用户取消分享后执行的回调函数</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">wx.ready(function()&#123;customShare();&#125;);</span><br></pre></td></tr></table></figure>
+<hr>
+<p><strong>That’s all.</strong><br><strong>Happy writing!</strong></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/H5微信活动/" rel="tag">#H5微信活动</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/09/01/Centos下安装Node-js/" rel="next" title="Centos下安装Node.js">
+                <i class="fa fa-chevron-left"></i> Centos下安装Node.js
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/10/21/Python常见数据类型/" rel="prev" title="Python常见数据类型">
+                Python常见数据类型 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image" src="/images/me.jpeg" alt="Brook.Xi">
+          <p class="site-author-name" itemprop="name">Brook.Xi</p>
+          <p class="site-description motion-element" itemprop="description">毋意, 毋必, 毋固, 毋我</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">21</span>
+              <span class="site-state-item-name">文章</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">15</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/xizhiming" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#页面样式与布局"><span class="nav-number">2.</span> <span class="nav-text">页面样式与布局</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#背景音乐"><span class="nav-number">3.</span> <span class="nav-text">背景音乐</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#html标签"><span class="nav-number">3.1.</span> <span class="nav-text">html标签</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#旋转动画-css"><span class="nav-number">3.2.</span> <span class="nav-text">旋转动画(css)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#播放及暂停-js"><span class="nav-number">3.3.</span> <span class="nav-text">播放及暂停(js)</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#图片预加载"><span class="nav-number">4.</span> <span class="nav-text">图片预加载</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#页面交互-touch和shake"><span class="nav-number">5.</span> <span class="nav-text">页面交互(touch和shake)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#多点触控-touch"><span class="nav-number">5.1.</span> <span class="nav-text">多点触控,touch</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#向上滑动-touch"><span class="nav-number">5.2.</span> <span class="nav-text">向上滑动,touch</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#摇一摇-shake"><span class="nav-number">5.3.</span> <span class="nav-text">摇一摇,shake</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#微信自定义分享"><span class="nav-number">6.</span> <span class="nav-text">微信自定义分享</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#中控服务器计算签名"><span class="nav-number">6.1.</span> <span class="nav-text">中控服务器计算签名</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#请求中控服务器获取签名"><span class="nav-number">6.2.</span> <span class="nav-text">请求中控服务器获取签名</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#设置自定义分享的内容"><span class="nav-number">6.3.</span> <span class="nav-text">设置自定义分享的内容</span></a></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Brook.Xi</span>
+</div>
+
+<div class="powered-by">
+  <a class="theme-link" href="https://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

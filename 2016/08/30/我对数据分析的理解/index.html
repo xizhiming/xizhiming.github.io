@@ -1,0 +1,634 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css">
+
+
+  <meta name="keywords" content="数据分析理论,">
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1">
+
+
+
+
+
+
+<meta name="description" content="人人都是数据分析师在现在这样一个用数据说话, 靠数据竞争的时代, 人人都应该懂一点数据分析。而顶着数据分析师的名头靠数据分析吃饭的我们, 更需要比别人做的更好。吃的透业务、搞的定技术、玩的转数据、写的好报告, 这些技能我们每一项都必不可少。">
+<meta name="keywords" content="数据分析理论">
+<meta property="og:type" content="article">
+<meta property="og:title" content="我对数据分析的理解">
+<meta property="og:url" content="http://xizhiming.github.io/2016/08/30/我对数据分析的理解/index.html">
+<meta property="og:site_name" content="Brook.Xi">
+<meta property="og:description" content="人人都是数据分析师在现在这样一个用数据说话, 靠数据竞争的时代, 人人都应该懂一点数据分析。而顶着数据分析师的名头靠数据分析吃饭的我们, 更需要比别人做的更好。吃的透业务、搞的定技术、玩的转数据、写的好报告, 这些技能我们每一项都必不可少。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2016-09-20T03:24:37.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="我对数据分析的理解">
+<meta name="twitter:description" content="人人都是数据分析师在现在这样一个用数据说话, 靠数据竞争的时代, 人人都应该懂一点数据分析。而顶着数据分析师的名头靠数据分析吃饭的我们, 更需要比别人做的更好。吃的透业务、搞的定技术、玩的转数据、写的好报告, 这些技能我们每一项都必不可少。">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://xizhiming.github.io/2016/08/30/我对数据分析的理解/">
+
+  <title> 我对数据分析的理解 | Brook.Xi </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/index" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Brook.Xi</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/index" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                我对数据分析的理解
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-08-30T10:28:15+08:00" content="2016-08-30">
+              2016-08-30
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="人人都是数据分析师"><a href="#人人都是数据分析师" class="headerlink" title="人人都是数据分析师"></a>人人都是数据分析师</h2><p>在现在这样一个用数据说话, 靠数据竞争的时代, 人人都应该懂一点数据分析。<br>而顶着数据分析师的名头靠数据分析吃饭的我们, 更需要比别人做的更好。<br>吃的透业务、搞的定技术、玩的转数据、写的好报告, 这些技能我们每一项都必不可少。<br><a id="more"></a></p>
+<hr>
+<h2 id="何为数据分析"><a href="#何为数据分析" class="headerlink" title="何为数据分析"></a>何为数据分析</h2><p>字面意思很容易理解, 就是对数据进行分析, 提取其中的有用信息与价值, 辅助判断与决策。<br>它主要有以下5个步骤:</p>
+<ol>
+<li>明确分析目的<br>这是数据分析工作的前提和先决条件, 不明白分析目的, 后面的所有工作都会非常盲目且没有效率。</li>
+<li>数据收集<br>在明确分析目的之后, 我们就需要开始构思需要哪些数据。数据来源多种多样, 可以是自有数据, 也可以是第三方数据。<br>工作中常通过以下方式获取数据:<ul>
+<li>问卷调查 : 可以借助免费的网络调查平台, 例如<a href="https://www.wenjuan.com/" target="_blank" rel="noopener">问卷网</a>, <a href="http://www.sojump.com/" target="_blank" rel="noopener">问卷星</a>等</li>
+<li>查询公司内的既有数据 : 例如CRM系统, 数据库等</li>
+<li>部署日志记录系统, 收集用户的行为日志</li>
+<li>第三方统计工具 : 例如Google analytics、百度统计、友盟等网站/App分析工具</li>
+</ul>
+</li>
+<li>数据处理<br>首先在开始分析之前, 我们有必要对数据的准确性、完整性做检验, 任何建立在错误数据上的分析都是无效的, 甚至可能会导致非常严重的后果。<br>在检验确认数据可用的情况下, 我们需要对数据进行加工整理, 从大量的、杂乱无章的、难以理解的数据中抽取并推导出对解决问题有价值、有意义的数据。</li>
+<li>数据分析<br>数据分析就是为了探究数据的内在规律, 提取其中的有用信息, 前期的一切工作都是为了保证数据分析这一步能够有效的进行。<br>简单的数据分析方法有对比分析、细分分析、趋势分析, 这三个我经常称之为”数据分析的三板斧”。事实上, 这三种分析基本上可以解决我们大部分常见的分析工作。<br>而只要谈到”高深”的数据方法, 我们也会一下子想到, 例如相关分析、回归分析、聚类分析、主成分分析、判别分析等等。<blockquote>
+<p>不管黑猫白猫,  捉到老鼠就是好猫。不管是什么分析方法, 能达到分析目的就是好方法</p>
+</blockquote>
+</li>
+<li>数据展现<br>数据分析的最终目的还是为了指导我们的行动, 而作为一个数据分析师, 我们必须要能将分析结果非常形象直观的展现给所有需要看到的人。<br>我们常说”字不如表, 表不如图”, 当需要用数据说话时, 图表永远是我们的最佳利器。最最常见的比如折线图、柱形图、饼图、散点图等等。<br>在数据展现的过程中, 光有图表是远远不够的, 我们需要把这些图表进行组合撰写成报告。<br>一个好的报告需要有明确分析背景和目的、清晰的图表展现、简单易懂的结论、可实行的建议或者解决方案。</li>
+</ol>
+<hr>
+<h2 id="工欲善其事-必先利其器"><a href="#工欲善其事-必先利其器" class="headerlink" title="工欲善其事, 必先利其器"></a>工欲善其事, 必先利其器</h2><p>为了更好的展开我们的数据分析工作, 我们需要擅用工具。数据分析的软件太多了, 这里我只简单介绍一些我用过的。</p>
+<ol>
+<li>MindManager : 思维导图的软件很多, MindManager是我最常用的一款。使用思维导图非常有利于我们去梳理分析框架。</li>
+<li>Excel : Excel就不用多介绍了, 基本上它能够处理绝大部分的数据分析工作。可以用于数据处理、数据分析、甚至是最后的数据展现。</li>
+<li>Word、PPT : 如果说你觉得用Excel写报告还是不够美观好看的话, 那么Word、PPT绝对可以满足你的进一步需求。</li>
+<li>SQL : 不同于以上三种, SQL是一种编程语言, 大部分数据库都支持它, 即使略有不同也可以很快以此为基础掌握。每个公司都有自己的数据库, 掌握SQL是你查询这些数据必备的节能。</li>
+<li>网站/App分析工具 : Google analytics、百度统计、友盟等第三方分析工具。其中在网站分析中, GA是我最为推崇的, 它的各种自定义分析功能远远超过了其他同类的免费工具。</li>
+<li>R : R是我最喜欢的工具。它是一种语言, 也是一种开源软件, 但我更愿意称之为一种环境。R里面各种各样的模块都十分齐全, 你可以借助它们非常方便快速的完成你的工作。<ul>
+<li>图形界面 : Rstudio</li>
+<li>数据处理 : dplyr、reshape2、stringr…</li>
+<li>链接数据库 : RSQLite、RODBC、RJDBC、Rmongo… </li>
+<li>绘图 : ggplot2、ploty…</li>
+<li>写报告 : shiny、knitr、Rmarkdown、</li>
+<li>搭建Web环境 : Rserve、FastRWeb、shinyserver</li>
+</ul>
+</li>
+<li>Python : Python和R一直是数据科学家最喜欢的两种语言。我开始使用Python是用于数据处理, 对记录的用户日志进行ETL(抽取、转换、加载), 再之后是为了搭建推荐系统。相比R而言, Python还是更适合部署在生产环境。</li>
+<li>hadoop、spark等一系列的大数据处理工具 : 这里面的每一个都可以大说特说, 后续在讲到大数据处理的时候再仔细说明。</li>
+</ol>
+<hr>
+<p><strong>That’s all.</strong><br><strong>Happy writing!</strong></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/数据分析理论/" rel="tag">#数据分析理论</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/08/29/Hexo-Github搭建个人博客/" rel="next" title="Hexo+Github搭建个人博客">
+                <i class="fa fa-chevron-left"></i> Hexo+Github搭建个人博客
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/08/31/Excel感观/" rel="prev" title="Excel感观">
+                Excel感观 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image" src="/images/me.jpeg" alt="Brook.Xi">
+          <p class="site-author-name" itemprop="name">Brook.Xi</p>
+          <p class="site-description motion-element" itemprop="description">毋意, 毋必, 毋固, 毋我</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">21</span>
+              <span class="site-state-item-name">文章</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">15</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/xizhiming" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#人人都是数据分析师"><span class="nav-number">1.</span> <span class="nav-text">人人都是数据分析师</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#何为数据分析"><span class="nav-number">2.</span> <span class="nav-text">何为数据分析</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#工欲善其事-必先利其器"><span class="nav-number">3.</span> <span class="nav-text">工欲善其事, 必先利其器</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Brook.Xi</span>
+</div>
+
+<div class="powered-by">
+  <a class="theme-link" href="https://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

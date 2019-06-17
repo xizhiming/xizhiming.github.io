@@ -1,0 +1,628 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css">
+
+
+  <meta name="keywords" content="Python基础,">
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1">
+
+
+
+
+
+
+<meta name="description" content="简介正则表达式可以按照一定的规则(模式)对文本进行处理，Python中可以通过自带的re模块使用正则表达式。re模块无需安装直接import re。">
+<meta name="keywords" content="Python基础">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Python中使用正则表达式：re模块">
+<meta property="og:url" content="http://xizhiming.github.io/2016/10/23/Python中使用正则-re模块/index.html">
+<meta property="og:site_name" content="Brook.Xi">
+<meta property="og:description" content="简介正则表达式可以按照一定的规则(模式)对文本进行处理，Python中可以通过自带的re模块使用正则表达式。re模块无需安装直接import re。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2016-10-25T05:31:09.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Python中使用正则表达式：re模块">
+<meta name="twitter:description" content="简介正则表达式可以按照一定的规则(模式)对文本进行处理，Python中可以通过自带的re模块使用正则表达式。re模块无需安装直接import re。">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://xizhiming.github.io/2016/10/23/Python中使用正则-re模块/">
+
+  <title> Python中使用正则表达式：re模块 | Brook.Xi </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/index" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Brook.Xi</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/index" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Python中使用正则表达式：re模块
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-10-23T15:24:10+08:00" content="2016-10-23">
+              2016-10-23
+            </time>
+          </span>
+
+          
+            <span class="post-category">
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Python/" itemprop="url" rel="index">
+                    <span itemprop="name">Python</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>正则表达式可以按照一定的规则(模式)对文本进行处理，Python中可以通过自带的re模块使用正则表达式。re模块无需安装直接<code>import re</code>。<br><a id="more"></a></p>
+<hr>
+<h2 id="正则表达式的基础语法"><a href="#正则表达式的基础语法" class="headerlink" title="正则表达式的基础语法"></a>正则表达式的基础语法</h2><h3 id="元字符"><a href="#元字符" class="headerlink" title="元字符"></a>元字符</h3><p>[] 字符集内的一个字符<br>^  字符串开头, 放在字符集[]内的开头位置则表示补集合,除……之外<br>$  字符串结尾或者换行字符后面的任何位置<br>|  多个字符集的或<br>() 分组</p>
+<h3 id="转义字符"><a href="#转义字符" class="headerlink" title="转义字符"></a>转义字符</h3><p>\  转义字符后+元字符可取消元字符,转化为普通字符<br>\  转义字符+不同字符表示特别含义<br>\d 匹配任何十进制数      [0-9]<br>\D 匹配任何非数字字符    [^0-9]<br>\s 匹配任何空白字符      [\t\n\r\f\v]<br>\S 匹配任何非空白字符     [^\t\n\r\f\v]<br>\w 匹配任何字母数字字符   [a-zA-Z0-9]<br>\W 匹配任何非字母数字字符  [^a-zA-Z0-9]</p>
+<h3 id="重复次数"><a href="#重复次数" class="headerlink" title="重复次数"></a>重复次数</h3><p>? 0或1次,也可以用来表示非贪婪匹配</p>
+<ul>
+<li>0次及以上</li>
+</ul>
+<ul>
+<li>1次及以上<br>{2} 重复2次<br>{2-3} 重复2-3次</li>
+</ul>
+<h3 id="编译标志-flags"><a href="#编译标志-flags" class="headerlink" title="编译标志-flags"></a>编译标志-flags</h3><p>DOTALL,S 使.匹配换行在内的所有字符<br>IGNORECASE,I 使匹配对大小写不敏感<br>MULTINE,M 多行匹配</p>
+<hr>
+<h2 id="re的常用方法"><a href="#re的常用方法" class="headerlink" title="re的常用方法"></a>re的常用方法</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"># 将正则表达式进行编译后,提高程序执行效率</span><br><span class="line"># re.I 不区分大小写</span><br><span class="line">re.compile(r&quot;[ae]bc&quot;, re.I)</span><br><span class="line"></span><br><span class="line"># findall返回一个包含匹配字符串的列表,无匹配结果则返回空列表</span><br><span class="line">re.findall(r&apos;[ae]bc&apos;, &apos;abc bbc cdc dbc ebc&apos;)  # 返回[&apos;abc&apos;, &apos;ebc&apos;]</span><br><span class="line">re.findall(r&apos;[^ae]bc&apos;, &apos;abc bbc cdc dbc ebc&apos;)  # 返回[&apos;bbc&apos;, &apos;dbc&apos;]</span><br><span class="line"></span><br><span class="line"># finditer 返回一个迭代器</span><br><span class="line">result = re.finditer(r&apos;[ae]bc&apos;, &apos;abc bbc cdc dbc ebc&apos;)</span><br><span class="line">next(result)</span><br><span class="line"></span><br><span class="line"># search 扫描字符串,找到匹配位置, 只返回第一次匹配到的位置</span><br><span class="line">result = re.search(r&apos;[ae]bc&apos;, &apos;abc bbc cdc dbc ebc&apos;)</span><br><span class="line">result.group()</span><br><span class="line">result.start()</span><br><span class="line">result.end()</span><br><span class="line">result.sapn()</span><br><span class="line">re.search(r&apos;[e]bc&apos;, &apos;abc bbc cdc dbc ebc&apos;)</span><br><span class="line"></span><br><span class="line"># match 扫描字符串,仅在开头看是否能匹配</span><br><span class="line">re.match(r&apos;[ae]bc&apos;, &apos;abc bbc cdc dbc ebc&apos;).group()</span><br><span class="line">re.match(r&apos;[e]bc&apos;, &apos;abc bbc cdc dbc ebc&apos;)</span><br><span class="line"></span><br><span class="line"># fullmatch(&gt;=Python3.4) 匹配整个字符串,返回匹配结果或NoneType</span><br><span class="line">re.fullmatch(r&apos;.*bc&apos;, &apos;abc bbc cdc dbc ebc&apos;)</span><br><span class="line"></span><br><span class="line"># split 用正则进行切割</span><br><span class="line">re.split(r&apos;[\+\-\*\\]&apos;, &apos;abc+bbc-cdc*dbc\ebc&apos;)</span><br><span class="line"></span><br><span class="line"># sub 替换匹配正则表达式的字符串</span><br><span class="line">re.sub(r&apos;[ae]bc&apos;, &apos;1&apos;, &apos;abc bbc cdc dbc ebc&apos;, count=1)</span><br><span class="line"></span><br><span class="line"># subn 替换的同时,在结果中返回一个替换次数的值</span><br><span class="line">re.subn(r&apos;[ae]bc&apos;, &apos;1&apos;, &apos;abc bbc cdc dbc ebc&apos;, count=2)</span><br></pre></td></tr></table></figure>
+<hr>
+<p><strong>That’s all.</strong><br><strong>Happy writing!</strong></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Python基础/" rel="tag">#Python基础</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/10/22/pip管理Python包/" rel="next" title="pip管理Python包">
+                <i class="fa fa-chevron-left"></i> pip管理Python包
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/10/24/Python常用语句/" rel="prev" title="Python常用语句">
+                Python常用语句 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image" src="/images/me.jpeg" alt="Brook.Xi">
+          <p class="site-author-name" itemprop="name">Brook.Xi</p>
+          <p class="site-description motion-element" itemprop="description">毋意, 毋必, 毋固, 毋我</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">21</span>
+              <span class="site-state-item-name">文章</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">15</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/xizhiming" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#简介"><span class="nav-number">1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#正则表达式的基础语法"><span class="nav-number">2.</span> <span class="nav-text">正则表达式的基础语法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#元字符"><span class="nav-number">2.1.</span> <span class="nav-text">元字符</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#转义字符"><span class="nav-number">2.2.</span> <span class="nav-text">转义字符</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#重复次数"><span class="nav-number">2.3.</span> <span class="nav-text">重复次数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#编译标志-flags"><span class="nav-number">2.4.</span> <span class="nav-text">编译标志-flags</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#re的常用方法"><span class="nav-number">3.</span> <span class="nav-text">re的常用方法</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Brook.Xi</span>
+</div>
+
+<div class="powered-by">
+  <a class="theme-link" href="https://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
