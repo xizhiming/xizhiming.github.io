@@ -1059,7 +1059,7 @@
             
               
                 
-                <a class="post-title-link" href="/2016/11/17/R语言数据结果：数据框/" itemprop="url">
+                <a class="post-title-link" href="/2016/11/17/R语言数据结构：数据框/" itemprop="url">
                   R语言数据结构：数据框
                 </a>
               
@@ -1127,7 +1127,7 @@
 </blockquote>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"># stringsAsFactors = FALSE,字符串不会被转换成fator类型</span><br><span class="line">&gt; df &lt;- data.frame(x=1:3,y=c(&apos;a&apos;,&apos;b&apos;,&apos;c&apos;),stringsAsFactors = FALSE)</span><br><span class="line">&gt; df</span><br><span class="line">  x y</span><br><span class="line">1 1 a</span><br><span class="line">2 2 b</span><br><span class="line">3 3 c</span><br><span class="line"></span><br><span class="line"># 3行</span><br><span class="line">&gt; nrow(df)</span><br><span class="line">[1] 3</span><br><span class="line"></span><br><span class="line"># 2列</span><br><span class="line">&gt; ncol(df)</span><br><span class="line">[1] 2</span><br><span class="line"></span><br><span class="line"># 列名称为&apos;x&apos;的列</span><br><span class="line">&gt; df$x</span><br><span class="line">[1] 1 2 3</span><br><span class="line"></span><br><span class="line"># 第1列</span><br><span class="line">&gt; df[,1]</span><br><span class="line">[1] 1 2 3</span><br><span class="line"></span><br><span class="line"># 第1行</span><br><span class="line">&gt; df[1,]</span><br><span class="line">  x y</span><br><span class="line">1 1 a</span><br><span class="line"></span><br><span class="line"># 合并行，需要保证数据类型和长度符合</span><br><span class="line">&gt; rbind(df,c(4,&apos;d&apos;))</span><br><span class="line">  x y</span><br><span class="line">1 1 a</span><br><span class="line">2 2 b</span><br><span class="line">3 3 c</span><br><span class="line">4 4 d</span><br><span class="line"></span><br><span class="line"># 合并列，需要保证长度符合</span><br><span class="line">&gt; cbind(df,&apos;z&apos;=4:6)</span><br><span class="line">  x y z</span><br><span class="line">1 1 a 4</span><br><span class="line">2 2 b 5</span><br><span class="line">3 3 c 6</span><br></pre></td></tr></table></figure>
           <div class="post-more-link text-center">
-            <a class="btn" href="/2016/11/17/R语言数据结果：数据框/#more" rel="contents">
+            <a class="btn" href="/2016/11/17/R语言数据结构：数据框/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1441,7 +1441,7 @@
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-count">6</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
